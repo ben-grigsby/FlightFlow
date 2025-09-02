@@ -1,124 +1,129 @@
-# Stock Sentinel
+# Weather & Flight Streaming ETL Pipeline
 
-Stock Sentinel is a real-time data pipeline and dashboard that continuously ingests stock market data (e.g., NVDA), stores it in a structured format, applies predictive models, and updates a web dashboard at regular intervals. It is designed to be modular and extendable, with plans to support multi-ticker tracking, automated infrastructure provisioning, and robust orchestration.
+This project implements a real-time data pipeline that ingests live flight data from the OpenSky Network API, enriches it with weather data (optional), and stores the results in a PostgreSQL database using a Kafka-based streaming architecture.
 
----
+## Overview
 
-## Project Objectives
+The purpose of this pipeline is to simulate a production-grade data engineering workflow that includes:
 
-- Stream stock data every few seconds (e.g., via API)
-- Perform lightweight transformations and store data efficiently
-- Apply and retrain forecasting models on a rolling basis (e.g., every 20 minutes)
-- Serve predictions and metrics through a web dashboard
-- Automate daily workflow using Airflow
-- Extend functionality through Infrastructure as Code (e.g., adding tickers dynamically)
+- Real-time data ingestion from a public API (OpenSky)
+- Kafka for message queuing and streaming
+- PostgreSQL for structured data storage
+- Docker for containerization and orchestration
+- (Optional) Weather enrichment using OpenWeather API
 
----
+## Architecture
 
-## System Architecture
-
-       +-----------------------+
-       |   Stock Price API     |
-       +----------+------------+
-                  |
-           [Requests / Kafka]
-                  |
-       +----------v----------+
-       |     ETL + Storage   |
-       |  (PostgreSQL / S3)  |
-       +----------+----------+
-                  |
-       +----------v-----------+
-       |   Model Training     |
-       | (e.g., LinearReg/XGB)|
-       +----------+-----------+
-                  |
-       +----------v-----------+
-       |    Web Dashboard     |
-       | (Flask / Streamlit)  |
-       +----------------------+
-
-
-
----
-
-## Tech Stack
-
-| Component          | Technology               |
-|-------------------|--------------------------|
-| Data Ingestion     | Python `requests`, Kafka (optional) |
-| Orchestration      | Apache Airflow           |
-| ETL & Processing   | Pandas, SQL              |
-| Storage            | PostgreSQL, optionally S3 |
-| Modeling           | scikit-learn, XGBoost    |
-| Dashboard          | Streamlit or Flask       |
-| Infrastructure     | Terraform / AWS CDK (planned) |
-
----
-
-## Directory Structure
-
-
-<pre>
+```text
++------------------+       +-------------------+       +---------------------+       +--------------------+
+|   OpenSky API    | --->  |   Kafka Producer   | --->  |   Kafka Consumer     | --->  |   PostgreSQL (DB)   |
++------------------+       +-------------------+       +---------------------+       +--------------------+
+                                                          |
+                                                          v
+                                                (Optional) Weather API
 ```
-stock_sentinel/
-├── dags/                    # Airflow DAGs
-├── etl/                     # ETL logic
-│   ├── fetch_data.py
-│   └── transform.py
-├── models/                  # Model training and prediction
-│   └── regression.py
-├── dashboard/               # Flask/Streamlit web app
-│   └── app.py
-├── infra/                   # IaC scripts (Terraform/CDK)
-├── data/                    # Local or cloud-staged data
-├── tests/                   # Unit and integration tests
-├── requirements.txt
-├── README.md
-└── main.py                  # Optional script entry point
+
+- **Producer**: Pulls data from OpenSky and sends JSON messages to Kafka topic.
+- **Consumer**: Listens to Kafka topic, parses data, and inserts it into `flight_data` table.
+- **PostgreSQL**: Stores the structured flight data for querying and analysis.
+
+## Technologies Used
+
+| Component         | Tool/Service           |
+|------------------|------------------------|
+| Streaming        | Apache Kafka           |
+| Message Broker   | Kafka Topics           |
+| Storage          | PostgreSQL             |
+| Containerization | Docker + Docker Compose|
+| Language         | Python                 |
+| Scheduling (optional) | Airflow/Cron       |
+| Weather API (optional) | OpenWeather API   |
+
+## Database Schema
+
+### Table: `flight_data`
+
+| Column           | Type             |
+|------------------|------------------|
+| icao24           | TEXT             |
+| callsign         | TEXT             |
+| origin_country   | TEXT             |
+| time_position    | BIGINT           |
+| last_contact     | BIGINT           |
+| longitude        | DOUBLE PRECISION |
+| latitude         | DOUBLE PRECISION |
+| baro_altitude    | DOUBLE PRECISION |
+| on_ground        | BOOLEAN          |
+| velocity         | DOUBLE PRECISION |
+| true_track       | DOUBLE PRECISION |
+| vertical_rate    | DOUBLE PRECISION |
+| sensors          | BIGINT           |
+| geo_altitude     | DOUBLE PRECISION |
+| squawk           | TEXT             |
+| spi              | BOOLEAN          |
+| position_source  | BIGINT           |
+| category         | BIGINT           |
+
+## File Structure
+
+```text
+.
+├── docker-compose.yml
+├── Dockerfile
+├── dags/
+│   └── opensky/
+│       ├── producer.py
+│       ├── consumer.py
+│       └── utils.py
+├── etl/
+│   ├── postgres.py
+│   └── sql/
+│       └── init_db.sql
+├── infra/
+│   └── init_db.sql
+├── tests/
+│   └── sql_test.py
+└── README.md
 ```
-</pre>
 
+## How to Run
 
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/yourusername/weather-flight-streaming.git
+   cd weather-flight-streaming
+   ```
 
----
+2. **Start the environment**
+   ```bash
+   docker-compose up --build
+   ```
 
-## Airflow DAG Workflow
+3. **Run producer manually (for now)**
+   ```bash
+   docker exec -it <your_kafka_container> python3 dags/opensky/producer.py
+   ```
 
-| Task                         | Schedule             |
-|------------------------------|----------------------|
-| Initialize market day        | Daily at 9:30 AM     |
-| Stream stock data            | Every 2 seconds      |
-| Retrain forecasting model    | Every 20 minutes     |
-| Update dashboard             | Every 20 minutes     |
-| Close and reset pipeline     | Daily at 4:00 PM     |
+4. **Run consumer manually**
+   ```bash
+   docker exec -it <your_kafka_container> python3 dags/opensky/consumer.py
+   ```
 
----
+5. **Query PostgreSQL**
+   ```sql
+   SELECT * FROM flight_data LIMIT 5;
+   ```
 
-## Future Enhancements
+## Optional Extensions
 
-- Multi-ticker tracking with dynamic input
-- Kafka or Kinesis for full real-time stream processing
-- IaC interface to deploy pipelines and dashboards for new tickers
-- Enhanced dashboards with statistical summaries and model diagnostics
-- LLM-based market insights (optional)
+- Integrate OpenWeather API to enrich flight data based on lat/lon
+- Automate ingestion with Airflow
+- Expose metrics or dashboards via Streamlit or Superset
+- Use Avro or Protobuf for schema enforcement
+- Add historical storage layer using Parquet + Iceberg (if scaled up)
 
----
+## Future Work
 
-## Status Tracker
-
-| Component           | Status         |
-|--------------------|----------------|
-| NVDA Ingestion      | In Progress    |
-| Dashboard           | Not Started    |
-| Model Integration   | Not Started    |
-| Airflow Integration | Planned        |
-| IaC / Automation    | Planned        |
-
----
-
-## Author
-
-**Ben Grigsby**  
-Statistics Major, UC Davis  
-Focus: Data Engineering & Machine Learning  
+- Build interactive dashboards with real-time tracking
+- Add retry logic and error handling for flaky API calls
+- Migrate to cloud-native stack (AWS MSK + RDS + Lambda)

@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS opensky_flight_data (
+    icao24 TEXT,
+    callsign TEXT,
+    origin_country TEXT,
+    time_position BIGINT,
+    last_contact BIGINT,
+    longitude DOUBLE PRECISION,
+    latitude DOUBLE PRECISION,
+    baro_altitude DOUBLE PRECISION,
+    on_ground BOOLEAN,
+    velocity DOUBLE PRECISION,
+    true_track DOUBLE PRECISION,
+    vertical_rate DOUBLE PRECISION,
+    sensors BIGINT,
+    geo_altitude DOUBLE PRECISION,
+    squawk TEXT,
+    spi BOOLEAN,
+    position_source BIGINT,
+    category BIGINT
+);
