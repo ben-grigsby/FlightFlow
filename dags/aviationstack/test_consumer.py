@@ -10,7 +10,7 @@ consumer = KafkaConsumer(
     fetch_max_bytes=20_000_000,
     max_partition_fetch_bytes=20_000_000,
     consumer_timeout_ms=10000,
-    group_id='aviation_flight_data_test_group_01'
+    group_id='aviation_flight_data_test_group_02'
 )
 
 print("Starting consumer...")

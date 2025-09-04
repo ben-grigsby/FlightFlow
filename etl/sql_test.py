@@ -13,7 +13,7 @@ cur = conn.cursor()
 print("Starting query")
 
 select_quer = """
-SELECT origin_country FROM flight_data LIMIT 5;
+SELECT origin_country FROM opensky_flight_data LIMIT 5;
 """
 
 cur.execute(select_quer)

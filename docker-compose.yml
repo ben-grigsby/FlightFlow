@@ -37,5 +37,6 @@ services:
       POSTGRES_DB: flight_db
     ports:
       - "5432:5432"
-    volumes:
-      - ./infra/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    # volumes:
+    #   - ./infra/aviationstack_ddl.sql:/docker-entrypoint-initdb.d/aviationstack_ddl.sql
+    #   - ./infra/opensky_ddl.sql:/docker-entrypoint-initdb.d/opensky_ddl.sql

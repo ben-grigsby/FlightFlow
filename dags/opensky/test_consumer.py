@@ -23,35 +23,39 @@ consumer = KafkaConsumer(
     auto_offset_reset='earliest',
     fetch_max_bytes=20_000_000,
     max_partition_fetch_bytes=20_000_000,
-    consumer_timeout_ms=10000,
-    group_id='flight_data_test_group_01'
+    group_id='flight_data_test_group_03',
+    enable_auto_commit=True
 )
 
 print("⚙️  Starting consumer...")
 
-for i, message in enumerate(consumer):
-    print("Message received")
+try:
+    for i, message in enumerate(consumer):
+        print("Message received")
 
 
-    payload = message.value
+        payload = message.value
 
-    if isinstance(payload, bytes):
-        payload = payload.decode('utf-8')
-        payload = json.loads(payload)
+        if isinstance(payload, bytes):
+            payload = payload.decode('utf-8')
+            payload = json.loads(payload)
 
-    print(f"Inserting message_{i} into PostgreSQL db.")
+        print(f"Inserting message_{i} into PostgreSQL db.")
 
-    with open(f"os_message_{i}.json", "w") as f:
-        json.dump(payload, f, indent=2)
+        with open(f"os_message_{i}.json", "w") as f:
+            json.dump(payload, f, indent=2)
 
-    insert_into_postgres(
-        'flight_db', 
-        'user', 
-        'pass', 
-        payload['states'],
-        insert_opensky_flight_data
-        )
-    
-    print("Finished inserting into Postgre db.")
+        insert_into_postgres(
+            'flight_db', 
+            'user', 
+            'pass', 
+            payload['states'],
+            insert_opensky_flight_data
+            )
+        
+        print("Finished inserting into Postgre db.")
 
-
+except KeyboardInterrupt:
+    print("Stopped consumer manually.")
+finally:
+    consumer.close()

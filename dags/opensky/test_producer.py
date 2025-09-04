@@ -12,14 +12,18 @@ producer = KafkaProducer(
 
 URL = "https://opensky-network.org/api/states/all"
 
-response = requests.get(URL)
-print("Status Code:", response.status_code)
+while True:
 
-data = response.json()
+    response = requests.get(URL)
+    print("Status Code:", response.status_code)
 
-full_data = data
+    data = response.json()
 
-print("Sending full payload...")
-producer.send("flight_data", value=full_data)
-producer.flush()
-print("✅ Sent.")
+    full_data = data
+
+    print("Sending full payload...")
+    producer.send("flight_data", value=full_data)
+    producer.flush()
+    print("✅ Sent.")
+
+    time.sleep(11)
