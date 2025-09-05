@@ -1,4 +1,4 @@
-# etl/SQL_functions.py
+# etl/SQL_queries.py
 
 import sys
 import os
@@ -43,3 +43,72 @@ avstack_dim_airport = """
 """
 
 
+
+avstack_dim_airline_info = """
+    INSERT INTO as_dim_airline_info (
+        airline_iata,
+        airline_icao,
+        airline_name
+    )
+    VALUES (%s, %s, %s)
+    ON CONFLICT (airline_iata) DO NOTHING
+    RETURNING airline_id
+"""
+
+
+
+avstack_dim_flight_info = """
+    INSERT INTO as_dim_flight_info (
+        flight_number,
+        airline_id,
+        flight_iata,
+        flight_icao
+    )
+    VALUES (%s, %s, %s, %s)
+    RETURNING flight_id
+"""
+
+
+
+avstack_fact_arr_dept_info = """
+    INSERT INTO as_fact_arr_dept_table (
+        flight_id,
+        dept_airport,
+        arr_airport
+    )
+    VALUES (%s, %s, %s)
+    RETURNING id
+"""
+
+
+
+avstack_fact_dept_info = """
+    INSERT INTO as_fact_departures_table (
+        arr_dept_id,
+        scheduled_dept,
+        estimated_dept,
+        actual_dept,
+        terminal,
+        gate,
+        time_delay
+    )
+    VALUES (%s, %s, %s, %s, %s, %s, %s)
+    RETURNING flight_event_id
+"""
+
+
+
+avstack_fact_arr_info = """
+    INSERT INTO as_fact_arrivals_table (
+        flight_event_id,
+        arr_dept_id,
+        scheduled_arr,
+        estimated_arr,
+        actual_arr,
+        terminal,
+        gate,
+        time_delay
+    )
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+    RETURNING flight_event_id
+"""

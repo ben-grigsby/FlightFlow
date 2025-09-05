@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS as_dim_timezone_info (
     timezone_id SERIAL PRIMARY KEY,
-    timezone TEXT
+    timezone TEXT UNIQUE
 );
 
 
@@ -13,20 +13,20 @@ CREATE TABLE IF NOT EXISTS as_dim_airport_info (
 );
 
 
+CREATE TABLE IF NOT EXISTS as_dim_airline_info (
+    airline_id SERIAL PRIMARY KEY,
+    airline_iata TEXT UNIQUE,
+    airline_icao TEXT,
+    airline_name TEXT
+);
+
+
 CREATE TABLE IF NOT EXISTS as_dim_flight_info (
     flight_id SERIAL PRIMARY KEY,
     flight_number BIGINT,
     airline_id BIGINT REFERENCES as_dim_airline_info(airline_id),
     flight_iata TEXT,
     flight_icao TEXT
-);
-
-
-CREATE TABLE IF NOT EXISTS as_dim_airline_info (
-    airline_id SERIAL PRIMARY KEY,
-    airline_iata TEXT,
-    airline_icao TEXT,
-    airline_name TEXT
 );
 
 

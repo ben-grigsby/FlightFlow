@@ -7,11 +7,11 @@ import sys
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(scripts_path)
 
-from etl.postgre import (
+from etl.SQL_functions import (
     insert_into_postgres,
 )
 
-from etl.SQL_functions import (
+from etl.SQL_queries import (
     insert_opensky_flight_data
 )
 
@@ -24,7 +24,8 @@ consumer = KafkaConsumer(
     fetch_max_bytes=20_000_000,
     max_partition_fetch_bytes=20_000_000,
     group_id='flight_data_test_group_03',
-    enable_auto_commit=True
+    enable_auto_commit=True,
+    consumer_timeout_ms=3000
 )
 
 print("⚙️  Starting consumer...")
@@ -53,7 +54,7 @@ try:
             insert_opensky_flight_data
             )
         
-        print("Finished inserting into Postgre db.")
+    print("Finished inserting into Postgre db.")
 
 except KeyboardInterrupt:
     print("Stopped consumer manually.")
