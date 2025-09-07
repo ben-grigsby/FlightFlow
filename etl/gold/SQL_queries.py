@@ -21,7 +21,7 @@ insert_opensky_flight_data = """
 
 
 avstack_dim_timezone = """
-    INSERT INTO as_dim_timezone_info (
+    INSERT INTO gold.as_dim_timezone_info (
         timezone
     )
     VALUES (%s)
@@ -31,7 +31,7 @@ avstack_dim_timezone = """
 
 
 avstack_dim_airport = """
-    INSERT INTO as_dim_airport_info (
+    INSERT INTO gold.as_dim_airport_info (
         airport_name,
         iata,
         icao,
@@ -45,7 +45,7 @@ avstack_dim_airport = """
 
 
 avstack_dim_airline_info = """
-    INSERT INTO as_dim_airline_info (
+    INSERT INTO gold.as_dim_airline_info (
         airline_iata,
         airline_icao,
         airline_name
@@ -58,7 +58,7 @@ avstack_dim_airline_info = """
 
 
 avstack_dim_flight_info = """
-    INSERT INTO as_dim_flight_info (
+    INSERT INTO gold.as_dim_flight_info (
         flight_number,
         airline_id,
         flight_iata,
@@ -71,7 +71,7 @@ avstack_dim_flight_info = """
 
 
 avstack_fact_arr_dept_info = """
-    INSERT INTO as_fact_arr_dept_table (
+    INSERT INTO gold.as_fact_arr_dept_table (
         flight_id,
         dept_airport,
         arr_airport
@@ -83,7 +83,7 @@ avstack_fact_arr_dept_info = """
 
 
 avstack_fact_dept_info = """
-    INSERT INTO as_fact_departures_table (
+    INSERT INTO gold.as_fact_departures_table (
         arr_dept_id,
         scheduled_dept,
         estimated_dept,
@@ -99,7 +99,7 @@ avstack_fact_dept_info = """
 
 
 avstack_fact_arr_info = """
-    INSERT INTO as_fact_arrivals_table (
+    INSERT INTO gold.as_fact_arrivals_table (
         flight_event_id,
         arr_dept_id,
         scheduled_arr,
