@@ -1,4 +1,4 @@
-# etl/bronze/bronze_sql_queries.py
+# etl/bronze/avstack/bronze_sql_queries.py
 
 bronze_insert = """
     INSERT INTO avstack.bronze_info (

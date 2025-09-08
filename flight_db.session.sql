@@ -1,0 +1,1 @@
+SELECT * FROM avstack.bronze_info LIMIT 50

@@ -1,4 +1,4 @@
-# etl/bronze/bronze_load.py
+# etl/bronze/avstack/bronze_load.py
 
 import os, sys, json
 import psycopg2
@@ -11,7 +11,7 @@ from etl.sql_utilities import (
     try_except_wrapper,
 )
 
-from etl.bronze.bronze_sql_queries import (
+from etl.bronze.avstack.bronze_sql_queries import (
     bronze_insert
 )
 

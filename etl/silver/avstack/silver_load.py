@@ -1,7 +1,8 @@
-# etl/silver/silver_load.py
+# etl/silver/avstack/silver_load.py
 
 import os, sys
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, to_timestamp, length, regexp_replace
 
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(scripts_path)
@@ -24,4 +25,4 @@ df = spark.read.format("jdbc") \
     .option("driver", "org.postgresql.Driver") \
     .load()
 
-df.show(truncate=False)
+

@@ -9,7 +9,7 @@ import sys
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(scripts_path)
 
-from etl.bronze.bronze_load import (
+from etl.bronze.avstack.bronze_load import (
     insert_into_bronze_ddl
 )
 
