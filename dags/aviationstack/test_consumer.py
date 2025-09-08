@@ -9,20 +9,29 @@ import sys
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(scripts_path)
 
-from etl.SQL_queries import (
-    avstack_dim_timezone,
-    avstack_dim_airport,
-    avstack_dim_airline_info,
-    avstack_dim_flight_info,
-    avstack_fact_arr_dept_info,
-    avstack_fact_dept_info,
-    avstack_fact_arr_info
+from etl.bronze.bronze_load import (
+    insert_into_bronze_ddl
 )
 
 
-from etl.SQL_functions import(
-    all_table_insertion
+from etl.sql_utilities import (
+    connect_to_db
 )
+
+
+# ==================================================================
+# Constants
+# ==================================================================
+
+db = "flight_db"
+user = "user"
+password = "pass"
+
+
+# ==================================================================
+# Set-up
+# ==================================================================
+
 
 consumer = KafkaConsumer(
     'aviation_flight_data',
@@ -32,13 +41,21 @@ consumer = KafkaConsumer(
     fetch_max_bytes=20_000_000,
     max_partition_fetch_bytes=20_000_000,
     consumer_timeout_ms=10000,
-    group_id='aviation_flight_data_test_group_00'
+    group_id='aviation_flight_data_test_group_03'
 )
+
+
+cur, conn = connect_to_db(db, user, password)
+
+
+# ==================================================================
+# Action
+# ==================================================================
 
 print("Starting consumer...")
 
 for i, message in enumerate(consumer):
-    print("Message received")
+    print(f"Message {i} received")
     print("Processing data...")
     
     with open(f"as_message_{i}.json", "w") as f:
@@ -46,20 +63,8 @@ for i, message in enumerate(consumer):
 
     payload = message.value
     data = payload['data']
+    # print(data)
 
-    id_lst = all_table_insertion(
-        "flight_db", 
-        "user", 
-        "pass", 
-        data, 
-        avstack_dim_timezone,
-        avstack_dim_airport,
-        avstack_dim_airline_info,
-        avstack_dim_flight_info,
-        avstack_fact_arr_dept_info,
-        avstack_fact_dept_info,
-        avstack_fact_arr_info
-        )
+    insert_into_bronze_ddl(cur, conn, data)
 
-    print("Completed PostgreSQL data load.")
-
+    

@@ -3,11 +3,11 @@
         {
             "ssh": "Disabled",
             "previewLimit": 50,
-            "server": "127.0.0.1",
+            "server": "localhost",
             "port": 5433,
             "askForPassword": true,
             "driver": "PostgreSQL",
-            "name": "Flight Weather DB",
+            "name": "flight_db",
             "database": "flight_db",
             "username": "user"
         }

@@ -1,4 +1,4 @@
-# etl/SQL_functions.py
+# etl/gold/gold_load.py
 
 import os, sys, json
 import psycopg2
