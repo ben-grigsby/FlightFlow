@@ -1,1 +1,1 @@
-SELECT * FROM avstack.bronze_info LIMIT 50
+SELECT * FROM avstack.gold_dim_flight_info LIMIT 100

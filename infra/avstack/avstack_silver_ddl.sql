@@ -1,8 +1,9 @@
 -- infra/avstack/avstack_silver_ddl.sql
 
 CREATE TABLE IF NOT EXISTS avstack.silver_flight_info (
-    flight_iata TEXT PRIMARY KEY,
-    flight_date DATE,
+    id BIGINT,
+    flight_iata TEXT,
+    flight_date TIMESTAMP,
     flight_icao TEXT,
     flight_number BIGINT,
     flight_status TEXT,
@@ -17,8 +18,10 @@ CREATE TABLE IF NOT EXISTS avstack.silver_flight_info (
 
 
 CREATE TABLE IF NOT EXISTS avstack.silver_dept_info (
+    id BIGINT,
+    flight_id SERIAL PRIMARY KEY,
     flight_iata TEXT,
-    flight_date DATE,
+    flight_date TIMESTAMP,
     airport TEXT,
     timezone TEXT,
     iata TEXT,
@@ -37,8 +40,10 @@ CREATE TABLE IF NOT EXISTS avstack.silver_dept_info (
 
 
 CREATE TABLE IF NOT EXISTS avstack.silver_arr_info (
+    id BIGINT,
+    flight_id SERIAL PRIMARY KEY,
     flight_iata TEXT,
-    flight_date DATE,
+    flight_date TIMESTAMP,
     airport TEXT,
     timezone TEXT,
     iata TEXT,

@@ -1,6 +1,7 @@
 -- infra/avstack/avstack_bronze_ddl.sql
 
 CREATE TABLE IF NOT EXISTS avstack.bronze_info (
+    id SERIAL PRIMARY KEY,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     flight_date TEXT,
     flight_status TEXT, -- 
