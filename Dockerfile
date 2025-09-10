@@ -1,18 +1,19 @@
 # Use Bookworm base to avoid missing packages
 FROM python:3.10-slim-bookworm
 
-# Install OpenJDK 17 and other dependencies
+# Install Java and essential build tools
 RUN apt-get update && \
-    apt-get install -y openjdk-17-jdk ca-certificates curl gnupg lsb-release && \
-    apt-get clean && \
-    export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) && \
-    echo "export JAVA_HOME=$JAVA_HOME" >> /etc/profile && \
-    echo "export PATH=$JAVA_HOME/bin:$PATH" >> /etc/profile && \
-    echo "JAVA_HOME=$JAVA_HOME" >> /etc/environment && \
-    echo "PATH=$JAVA_HOME/bin:$PATH" >> /etc/environment
+    apt-get install -y \
+    openjdk-17-jdk \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release \
+    gcc \
+    python3-dev \
+    && apt-get clean
 
-# Manually set default fallback (only used by Python apps during build)
-# This avoids needing shell substitution inside ENV
+# Set JAVA_HOME and PATH
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64
 ENV PATH="$JAVA_HOME/bin:$PATH"
 

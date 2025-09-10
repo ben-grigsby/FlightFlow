@@ -1,1 +1,1 @@
-SELECT * FROM avstack.gold_dim_flight_info LIMIT 100
+SELECT * FROM avstack.gold_dim_timezone_info LIMIT 100

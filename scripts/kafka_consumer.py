@@ -1,22 +1,12 @@
-# dags/aviationstack/test_consumer.py
+# dags/aviationstack/kafka_consumer.py
 
 from kafka import KafkaConsumer
+
+import datetime
 
 import json
 import os
 import sys
-
-scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-sys.path.append(scripts_path)
-
-from etl.bronze.avstack.bronze_load import (
-    insert_into_bronze_ddl
-)
-
-
-from etl.sql_utilities import (
-    connect_to_db
-)
 
 
 # ==================================================================
@@ -41,30 +31,28 @@ consumer = KafkaConsumer(
     fetch_max_bytes=20_000_000,
     max_partition_fetch_bytes=20_000_000,
     consumer_timeout_ms=10000,
-    group_id='aviation_flight_data_test_group_03'
+    group_id='aviation_flight_data_test_group_01'
 )
-
-
-cur, conn = connect_to_db(db, user, password)
 
 
 # ==================================================================
 # Action
 # ==================================================================
 
-print("Starting consumer...")
 
-for i, message in enumerate(consumer):
-    print(f"Message {i} received")
-    print("Processing data...")
-    
-    with open(f"as_message_{i}.json", "w") as f:
-        json.dump(message.value, f, indent=2)
+
+def run_kafka_consumer():
+    print("Starting consumer...")
+
+    message = next(consumer)
 
     payload = message.value
     data = payload['data']
-    # print(data)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filepath = f"data/kafka_logs/as_message_{timestamp}.json"
 
-    insert_into_bronze_ddl(cur, conn, data)
-
+    with open(filepath, "w") as f:
+        json.dump(data, f, indent=2)
+    
+    return filepath
     

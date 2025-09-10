@@ -3,3 +3,9 @@ requests
 psycopg2-binary
 pyspark
 pandas
+apache-airflow==2.8.1 
+apache-airflow-providers-postgres
+
+
+
+--constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.8.1/constraints-3.11.txt"
