@@ -12,15 +12,18 @@ def run_kafka_producer():
     )
 
     URL = "http://api.aviationstack.com/v1/flights"
-    API_KEY = 'your_api_key_here'
+    API_KEY = 'a21fadb9119de29308677536faf1bb6b'
     params = {'access_key': API_KEY}
 
     response = requests.get(URL, params=params)
     print("Status Code: ", response.status_code)
+    print("URL: ", response.url)
+    print(API_KEY)
     
     data = response.json()
     print("Sending full payload...")
 
     producer.send("aviation_flight_data", value=data)
     producer.flush()
+    print("API response keys:", data.keys())
     print("Sent.")

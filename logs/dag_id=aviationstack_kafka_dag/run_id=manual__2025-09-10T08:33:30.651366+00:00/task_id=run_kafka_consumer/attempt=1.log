@@ -1,0 +1,49 @@
+[2025-09-10T08:33:37.792+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: aviationstack_kafka_dag.run_kafka_consumer manual__2025-09-10T08:33:30.651366+00:00 [queued]>
+[2025-09-10T08:33:37.795+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: aviationstack_kafka_dag.run_kafka_consumer manual__2025-09-10T08:33:30.651366+00:00 [queued]>
+[2025-09-10T08:33:37.795+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-10T08:33:37.799+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): run_kafka_consumer> on 2025-09-10 08:33:30.651366+00:00
+[2025-09-10T08:33:37.801+0000] {standard_task_runner.py:60} INFO - Started process 462 to run task
+[2025-09-10T08:33:37.802+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'aviationstack_kafka_dag', 'run_kafka_consumer', 'manual__2025-09-10T08:33:30.651366+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/aviationstack_dag.py', '--cfg-path', '/tmp/tmpzrun1_vs']
+[2025-09-10T08:33:37.803+0000] {standard_task_runner.py:88} INFO - Job 30: Subtask run_kafka_consumer
+[2025-09-10T08:33:37.809+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.11/site-packages/airflow/settings.py:194 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-09-10T08:33:37.822+0000] {task_command.py:423} INFO - Running <TaskInstance: aviationstack_kafka_dag.run_kafka_consumer manual__2025-09-10T08:33:30.651366+00:00 [running]> on host 8a4133f09470
+[2025-09-10T08:33:37.848+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='aviationstack_kafka_dag' AIRFLOW_CTX_TASK_ID='run_kafka_consumer' AIRFLOW_CTX_EXECUTION_DATE='2025-09-10T08:33:30.651366+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-10T08:33:30.651366+00:00'
+[2025-09-10T08:33:37.848+0000] {logging_mixin.py:188} INFO - Starting consumer...
+[2025-09-10T08:33:37.850+0000] {conn.py:396} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=1 host=kafka:9092 <connecting> [IPv4 ('172.18.0.4', 9092)]>: connecting to kafka:9092 [('172.18.0.4', 9092) IPv4]
+[2025-09-10T08:33:37.851+0000] {conn.py:457} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=1 host=kafka:9092 <connected> [IPv4 ('172.18.0.4', 9092)]>: Connection complete.
+[2025-09-10T08:33:37.851+0000] {conn.py:945} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connected> [IPv4 ('172.18.0.4', 9092)]>: Closing connection. 
+[2025-09-10T08:33:37.957+0000] {cluster.py:401} INFO - Coordinator for group/aviation_flight_data_test_group_01 is ('coordinator-1', 'kafka', 9092, None)
+[2025-09-10T08:33:37.958+0000] {base.py:788} INFO - Discovered coordinator coordinator-1 for group aviation_flight_data_test_group_01
+[2025-09-10T08:33:37.958+0000] {base.py:848} INFO - Starting new heartbeat thread
+[2025-09-10T08:33:37.958+0000] {consumer.py:365} INFO - Revoking previously assigned partitions () for group aviation_flight_data_test_group_01
+[2025-09-10T08:33:37.958+0000] {base.py:419} INFO - Failed to join group aviation_flight_data_test_group_01: NodeNotReadyError: coordinator-1
+[2025-09-10T08:33:37.959+0000] {conn.py:396} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=coordinator-1 host=kafka:9092 <connecting> [IPv4 ('172.18.0.4', 9092)]>: connecting to kafka:9092 [('172.18.0.4', 9092) IPv4]
+[2025-09-10T08:33:37.959+0000] {conn.py:457} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=coordinator-1 host=kafka:9092 <connected> [IPv4 ('172.18.0.4', 9092)]>: Connection complete.
+[2025-09-10T08:33:38.066+0000] {base.py:532} INFO - (Re-)joining group aviation_flight_data_test_group_01
+[2025-09-10T08:33:38.069+0000] {base.py:637} INFO - Received member id kafka-python-2.2.15-9849ee5a-4759-4216-ba2d-38a722b1a83f for group aviation_flight_data_test_group_01; will retry join-group
+[2025-09-10T08:33:38.070+0000] {base.py:419} INFO - Failed to join group aviation_flight_data_test_group_01: [Error 79] MemberIdRequiredError
+[2025-09-10T08:33:38.070+0000] {base.py:532} INFO - (Re-)joining group aviation_flight_data_test_group_01
+[2025-09-10T08:33:41.075+0000] {base.py:594} INFO - Successfully joined group aviation_flight_data_test_group_01 <Generation 3 (member_id: kafka-python-2.2.15-9849ee5a-4759-4216-ba2d-38a722b1a83f, protocol: range)>
+[2025-09-10T08:33:41.076+0000] {base.py:596} INFO - Elected group leader -- performing partition assignments using range
+[2025-09-10T08:33:41.079+0000] {subscription_state.py:254} INFO - Updated partition assignment: [('aviation_flight_data', 0)]
+[2025-09-10T08:33:41.079+0000] {consumer.py:249} INFO - Setting newly assigned partitions (('aviation_flight_data', 0),) for group aviation_flight_data_test_group_01
+[2025-09-10T08:33:41.081+0000] {fetcher.py:418} INFO - Resetting offset for partition ('aviation_flight_data', 0) to offset 0.
+[2025-09-10T08:33:41.105+0000] {kafka_consumer.py:54} INFO - Kafka payload: {'error': {'code': 'invalid_access_key', 'message': 'You have not supplied a valid API Access Key.'}}
+[2025-09-10T08:33:41.106+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/kafka_consumer.py", line 59, in run_kafka_consumer
+    raise ValueError(f"Missing 'data' key in Kafka payload: {payload}")
+ValueError: Missing 'data' key in Kafka payload: {'error': {'code': 'invalid_access_key', 'message': 'You have not supplied a valid API Access Key.'}}
+[2025-09-10T08:33:41.112+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=aviationstack_kafka_dag, task_id=run_kafka_consumer, execution_date=20250910T083330, start_date=20250910T083337, end_date=20250910T083341
+[2025-09-10T08:33:41.117+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 30 for task run_kafka_consumer (Missing 'data' key in Kafka payload: {'error': {'code': 'invalid_access_key', 'message': 'You have not supplied a valid API Access Key.'}}; 462)
+[2025-09-10T08:33:41.152+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-09-10T08:33:41.163+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
