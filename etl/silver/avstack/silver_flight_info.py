@@ -38,7 +38,7 @@ def clean_transform_flight_info(df, user, password, host, db_name, latest_proces
         "airline_icao",
         "aircraft",
         "live",
-    )#.filter(col("created_at") > latest_processing_time)
+    )
 
 
     df_flight_info.write \

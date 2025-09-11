@@ -34,7 +34,7 @@ consumer = KafkaConsumer(
     fetch_max_bytes=20_000_000,
     max_partition_fetch_bytes=20_000_000,
     consumer_timeout_ms=10000,
-    group_id='aviation_flight_data_test_group_01'
+    group_id='aviation_flight_data_test_group_02'
 )
 
 
@@ -45,27 +45,47 @@ consumer = KafkaConsumer(
 
 
 def run_kafka_consumer():
-    print("Starting consumer...")
 
-    for message in consumer:
-        payload = message.value
+    # ==================================================================
+    # Live Kafka Consumer
+    # ==================================================================
+    
+    # print("Starting consumer...")
 
-        log = LoggingMixin().log
-        log.info(f"Kafka payload: {payload}")
+    # for message in consumer:
+    #     payload = message.value
 
-        # Safe extraction
-        data = payload.get('data')
-        if data is None:
-            raise ValueError(f"Missing 'data' key in Kafka payload: {payload}")
+    #     log = LoggingMixin().log
+    #     log.info(f"Kafka payload: {payload}")
 
-        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        filepath = f"data/kafka_logs/as_message_{timestamp}.json"
+    #     # Safe extraction
+    #     data = payload.get('data')
+    #     if data is None:
+    #         raise ValueError(f"Missing 'data' key in Kafka payload: {payload}")
 
-        # Make directory if it doesn't exist
-        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+    #     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    #     filepath = f"data/kafka_logs/as_message_{timestamp}.json"
 
-        with open(filepath, "w") as f:
-            json.dump(data, f, indent=2)
+    #     # Make directory if it doesn't exist
+    #     os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
-        log.info(f"Saved payload to {filepath}")
-        return filepath
+    #     with open(filepath, "w") as f:
+    #         json.dump(data, f, indent=2)
+
+    #     log.info(f"Saved payload to {filepath}")
+    #     return filepath
+
+    # ==================================================================
+    # Offline Kafka Consumer
+    # ==================================================================
+
+    log = LoggingMixin().log
+
+    filepath = "data/kafka_logs/as_message_20250911_020013.json"
+
+    if not os.path.exists(filepath):
+        log.error(f"[ERROR] File noth found: {filepath}")
+        raise FileNotFoundError(f"No saved Kafka file at {filepath}")
+
+    log.info(f"[DEBUG] Using existing Kafka payload: {filepath}")
+    return filepath

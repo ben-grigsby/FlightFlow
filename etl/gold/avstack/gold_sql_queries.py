@@ -49,7 +49,7 @@ gold_avstack_airline_table = """
         airline_iata,
         airline_icao,
         airline_name
-    FROM avstack.silver_flight_info
+    FROM avstack.silver_flight_info;
 """
 
 
@@ -61,26 +61,29 @@ gold_avstack_airport_table = """
             icao,
             timezone_id
         )
-    
-    SELECT 
-        s.airport,
-        s.iata,
-        s.icao,
-        g.timezone_id
-    FROM avstack.silver_dept_info s
-    JOIN avstack.gold_dim_timezone_info g
-        ON s.timezone = g.timezone
-    
-    UNION
+    SELECT * 
+    FROM (
+        SELECT 
+            s.airport,
+            s.iata,
+            s.icao,
+            g.timezone_id
+        FROM avstack.silver_dept_info s
+        JOIN avstack.gold_dim_timezone_info g
+            ON s.timezone = g.timezone
+        
+        UNION
 
-    SELECT 
-        s.airport,
-        s.iata,
-        s.icao,
-        g.timezone_id
-    FROM avstack.silver_arr_info s
-    JOIN avstack.gold_dim_timezone_info g
-        ON s.timezone = g.timezone;
+        SELECT 
+            s.airport,
+            s.iata,
+            s.icao,
+            g.timezone_id
+        FROM avstack.silver_arr_info s
+        JOIN avstack.gold_dim_timezone_info g
+            ON s.timezone = g.timezone
+    ) AS airport_union
+    ON CONFLICT (iata) DO NOTHING;
 """
 
 
@@ -172,6 +175,7 @@ gold_avstack_arr_table = """
             gate,
             time_delay
         )
+    SELECT * FROM (
     SELECT 
         gd.flight_event_id,
         s.id,
@@ -187,4 +191,6 @@ gold_avstack_arr_table = """
         ON s.id = gd.bronze_id
     JOIN avstack.gold_fact_arr_dept_table gad
         ON s.id = gad.bronze_id
+    ) AS sub
+    ON CONFLICT (flight_event_id) DO NOTHING;
 """

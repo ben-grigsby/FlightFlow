@@ -44,10 +44,10 @@ def load_silver():
     print("[INFO] Start to load data into silver tables.")
     spark = SparkSession.builder \
         .appName("Bronze to Silver") \
-        .config("spark.jars", "jars/postgresql-42.7.7.jar") \
+        .config("spark.jars", "/opt/airflow/jars/postgresql-42.7.7.jar") \
         .getOrCreate()
     
-    latest_processing_time = get_latest_created_at(spark, 'avstack.bronze_info', "jdbc:postgresql://postgres:5432/flight_db", "user", "pass")
+    latest_processing_time = get_latest_created_at(spark, 'avstack.silver_flight_info', "jdbc:postgresql://postgres:5432/flight_db", "user", "pass")
 
     df = spark.read.format("jdbc") \
         .option("url", "jdbc:postgresql://postgres:5432/flight_db") \
@@ -56,14 +56,18 @@ def load_silver():
         .option("password", "pass") \
         .option("driver", "org.postgresql.Driver") \
         .load()
+    
+    print(f"[DEBUG] Latest processing time: {latest_processing_time}")
 
     df = df.filter(
+        (
         col("dept_timezone").isNotNull() &
         col("arr_timezone").isNotNull() &
         col("dept_airport").isNotNull() &
         col("arr_airport").isNotNull() &
-        col("airline_iata").isNotNull() &
-        col("created_at") > to_timestamp(lit(latest_processing_time))
+        col("airline_iata").isNotNull()
+        ) &
+        (col("created_at") > to_timestamp(lit(latest_processing_time)))
     )
 
     if df.rdd.isEmpty():
