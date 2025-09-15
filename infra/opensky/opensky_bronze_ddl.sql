@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS opensky.bronze_info (
     squawk TEXT,
     spi BOOLEAN,
     position_source BIGINT,
-    category BIGINT,
     raw_json JSONB
-)
+);
+
+CREATE INDEX idx_icao24_bronze ON opensky.bronze_info (icao24);

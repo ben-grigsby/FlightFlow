@@ -60,8 +60,6 @@ services:
       - ./infra/avstack/avstack_silver_ddl.sql:/docker-entrypoint-initdb.d/02_aviationstack_silver_ddl.sql
       - ./infra/avstack/avstack_gold_ddl.sql:/docker-entrypoint-initdb.d/03_aviationstack_gold_ddl.sql
       - ./infra/opensky/opensky_bronze_ddl.sql:/docker-entrypoint-initdb.d/01_opensky_bronze_ddl.sql
-      - ./infra/opensky/opensky_silver_ddl.sql:/docker-entrypoint-initdb.d/02_opensky_silver_ddl.sql
-      - ./infra/opensky/opensky_gold_ddl.sql:/docker-entrypoint-initdb.d/03_opensky_gold_ddl.sql
     networks:
       - backend
 
@@ -95,6 +93,7 @@ services:
       - ./scripts:/opt/airflow/scripts
       - ./entrypoint.sh:/opt/airflow/entrypoint.sh
       - ./.env:/opt/airflow/.env
+      - ./flightweather_dbt:/opt/airflow/flightweather_dbt
     networks:
       - backend
 
@@ -128,6 +127,7 @@ services:
       - ./requirements.txt:/requirements.txt
       - ./scripts:/opt/airflow/scripts
       - ./.env:/opt/airflow/.env
+      - ./flightweather_dbt:/opt/airflow/flightweather_dbt
     ports:
       - "8080:8080"
     command: webserver
@@ -166,6 +166,7 @@ services:
       - ./requirements.txt:/requirements.txt
       - ./scripts:/opt/airflow/scripts
       - ./.env:/opt/airflow/.env
+      - ./flightweather_dbt:/opt/airflow/flightweather_dbt
     command: scheduler
     restart: always
     networks:

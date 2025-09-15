@@ -19,12 +19,10 @@ bronze_insert = """
         squawk,
         spi,
         position_source,
-        category,
         raw_json
     )
     VALUES (
         %s, %s, %s, %s, %s, %s, %s, %s, %s, 
-        %s, %s, %s, %s, %s, %s, %s, %s, %s,
-        %s
+        %s, %s, %s, %s, %s, %s, %s, %s, %s
     )
 """

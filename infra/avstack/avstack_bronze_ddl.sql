@@ -39,4 +39,9 @@ CREATE TABLE IF NOT EXISTS avstack.bronze_info (
     aircraft TEXT, --
     live TEXT, --
     raw_json JSONB
-)
+);
+
+CREATE INDEX idx_dept_airport_icao ON avstack.bronze_info (dept_airport_icao);
+CREATE INDEX idx_arr_airport_icao ON avstack.bronze_info (arr_airport_icao);
+CREATE INDEX idx_airline_icao ON avstack.bronze_info (airline_icao);
+CREATE INDEX idx_flight_icao ON avstack.bronze_info (flight_icao);

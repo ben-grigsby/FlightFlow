@@ -2,7 +2,7 @@
 
 import os, sys, json, psycopg2
 
-from airflow.hooks.postgres_hook import PostgresHook
+from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.utils.log.logging_mixin import LoggingMixin
 
 scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -12,29 +12,29 @@ from bronze.opensky.bronze_sql_queries import(
     bronze_insert
 )
 
-log = LoggingMixin().log
+def insert_into_bronze_ddl(ti, insert_query=bronze_insert):
+    """
+    Inserts raw JSON data into opensky.bronze_ddl table
+    """
+    log = LoggingMixin().log
 
-conn = psycopg2.connect(
-    host="postgres",     
-    port=5432,                
-    database="flight_db",
-    user="user",
-    password="pass"
-)
+    filepath = ti.xcmon_pull(task_ids='run_kafka_consumer')
 
-cur = conn.cursor()
+    hook = PostgresHook(postgre_conn_id='postres_default')
+    conn = hook.get_conn()
+    cur = conn.cursor()
 
-filepath = "data/kafka_logs/opensky/as_message_20250915_015207.json"
+    with open(filepath, "r") as f:
+        info = json.load(f)
 
-with open(filepath, "r") as f:
-    info = json.load(f)
+    log.info("Beginning to extract and load data into bronze_info table.")
 
-log.info("Beginning to extract and load data into bronze_info table.")
+    for entry in info:
+        full_row = entry + [json.dumps(entry)]
+        cur.execute(bronze_insert, full_row)
+    
+    log.info("Completed extracting and loading data int bronze_info table.")
 
-for entry in info:
-    full_row = entry + [json.dumps(entry)]
-    cur.execute(bronze_insert, full_row)
-
-conn.commit()
-cur.close()
-conn.close()
+    conn.commit()
+    cur.close()
+    conn.close()

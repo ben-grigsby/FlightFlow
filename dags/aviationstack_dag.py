@@ -20,7 +20,7 @@ from gold.avstack.gold_load import load_gold
 
 
 with DAG(
-    dag_id='aviationstack_kafka_dag',
+    dag_id='aviationstack_pipeline_dag',
     schedule_interval='0 0,4,8 * * *',
     start_date=datetime(2023, 1, 1),
     catchup=False,

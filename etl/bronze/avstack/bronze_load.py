@@ -2,7 +2,7 @@
 
 import os, sys, json
 
-from airflow.hooks.postgres_hook import PostgresHook
+from airflow.providers.postgres.hooks.postgres import PostgresHook
 from airflow.utils.log.logging_mixin import LoggingMixin
 
 # scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -20,7 +20,7 @@ from etl.bronze.avstack.bronze_sql_queries import (
 
 def insert_into_bronze_ddl(ti, insert_query=bronze_insert):
     """
-    Inserts raw JSON data into avstack_bronze_ddl table
+    Inserts raw JSON data into avstack.bronze_ddl table
     """
 
     log = LoggingMixin().log

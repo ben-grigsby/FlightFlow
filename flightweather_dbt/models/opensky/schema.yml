@@ -1,0 +1,5 @@
+sources:
+  - name: opensky
+    schema: opensky
+    tables: 
+      - name: bronze_info
