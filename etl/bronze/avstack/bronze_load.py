@@ -1,9 +1,9 @@
 # etl/bronze/avstack/bronze_load.py
 
 import os, sys, json
-import psycopg2
 
 from airflow.hooks.postgres_hook import PostgresHook
+from airflow.utils.log.logging_mixin import LoggingMixin
 
 # scripts_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 # sys.path.append(scripts_path)
@@ -23,13 +23,15 @@ def insert_into_bronze_ddl(ti, insert_query=bronze_insert):
     Inserts raw JSON data into avstack_bronze_ddl table
     """
 
+    log = LoggingMixin().log
+
     filepath = ti.xcom_pull(task_ids='run_kafka_consumer')
 
     hook = PostgresHook(postgre_conn_id='postgres_default')
     conn = hook.get_conn()
     cur = conn.cursor()
 
-    print("[INFO] Reading data from JSON file")
+    log.info("Reading data from JSON file")
     with open(filepath, "r") as f:
         info = json.load(f)
 
@@ -117,7 +119,8 @@ def insert_into_bronze_ddl(ti, insert_query=bronze_insert):
                 flight_iata,
                 flight_icao,
                 aircraft,
-                live
+                live,
+                info
             ]
 
             cur.execute(insert_query, lst)

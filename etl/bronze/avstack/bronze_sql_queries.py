@@ -36,11 +36,12 @@ bronze_insert = """
         flight_iata,
         flight_icao,
         aircraft,
-        live
+        live,
+        raw_json
     )
     VALUES (
         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-        %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
+        %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
     )
 """

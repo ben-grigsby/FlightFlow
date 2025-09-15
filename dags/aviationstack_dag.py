@@ -3,11 +3,12 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime
+
 import sys
 import os
 
 # Allow Airflow to import from outside the dags folder
-sys.path.append("/opt/airflow/scripts")
+sys.path.append("/opt/airflow/scripts/avstack")
 sys.path.append("/opt/airflow/etl")
 
 from kafka_producer import run_kafka_producer

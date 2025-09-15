@@ -1,0 +1,1 @@
+[2025-09-12T02:51:25.137+0000] {task_context_logger.py:104} ERROR - Executor reports task instance <TaskInstance: aviationstack_kafka_dag.run_kafka_consumer manual__2025-09-12T02:51:23.350685+00:00 [queued]> finished (success) although the task says it's queued. (Info: None) Was the task killed externally?

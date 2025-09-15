@@ -37,5 +37,6 @@ CREATE TABLE IF NOT EXISTS avstack.bronze_info (
     flight_iata TEXT, --
     flight_icao TEXT, --
     aircraft TEXT, --
-    live TEXT --
+    live TEXT, --
+    raw_json JSONB
 )

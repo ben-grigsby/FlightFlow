@@ -1,0 +1,33 @@
+[2025-09-13T00:05:55.481+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: aviationstack_kafka_dag.run_silver_load scheduled__2025-09-12T08:00:00+00:00 [queued]>
+[2025-09-13T00:05:55.483+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: aviationstack_kafka_dag.run_silver_load scheduled__2025-09-12T08:00:00+00:00 [queued]>
+[2025-09-13T00:05:55.484+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-13T00:05:55.488+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): run_silver_load> on 2025-09-12 08:00:00+00:00
+[2025-09-13T00:05:55.490+0000] {standard_task_runner.py:60} INFO - Started process 10992 to run task
+[2025-09-13T00:05:55.492+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'aviationstack_kafka_dag', 'run_silver_load', 'scheduled__2025-09-12T08:00:00+00:00', '--job-id', '32', '--raw', '--subdir', 'DAGS_FOLDER/aviationstack_dag.py', '--cfg-path', '/tmp/tmpa3hic5a8']
+[2025-09-13T00:05:55.492+0000] {standard_task_runner.py:88} INFO - Job 32: Subtask run_silver_load
+[2025-09-13T00:05:55.515+0000] {task_command.py:423} INFO - Running <TaskInstance: aviationstack_kafka_dag.run_silver_load scheduled__2025-09-12T08:00:00+00:00 [running]> on host eba0e74bcf84
+[2025-09-13T00:05:55.547+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='aviationstack_kafka_dag' AIRFLOW_CTX_TASK_ID='run_silver_load' AIRFLOW_CTX_EXECUTION_DATE='2025-09-12T08:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-09-12T08:00:00+00:00'
+[2025-09-13T00:05:55.547+0000] {logging_mixin.py:188} INFO - [INFO] Start to load data into silver tables.
+[2025-09-13T00:05:57.868+0000] {logging_mixin.py:188} INFO - [DEBUG] Latest processing time: 2025-09-12 08:03:16.117647
+[2025-09-13T00:05:58.272+0000] {logging_mixin.py:188} INFO - [INFO] Loading data into silver_flight_info
+[2025-09-13T00:05:58.272+0000] {logging_mixin.py:188} INFO - Starting cleaning and transformation process. avstack.bronze_info -> avstack.silver_flight_info
+[2025-09-13T00:05:58.815+0000] {logging_mixin.py:188} INFO - Completed cleaning and tranformation process. avstack.bronze_info -> avstack.silver_flight_info
+[2025-09-13T00:05:58.897+0000] {logging_mixin.py:188} INFO - Original record count: 45
+[2025-09-13T00:05:58.964+0000] {logging_mixin.py:188} INFO - Cleaned record count: 40
+[2025-09-13T00:05:58.964+0000] {logging_mixin.py:188} INFO - [INFO] Successfully loaded data into silver_flight_info
+[2025-09-13T00:05:58.964+0000] {logging_mixin.py:188} INFO - [INFO] Loading data into silver_dept_info
+[2025-09-13T00:05:58.965+0000] {logging_mixin.py:188} INFO - Starting cleaning and transformation process. avstack.bronze_info -> avstack.silver_dept_info
+[2025-09-13T00:05:59.183+0000] {logging_mixin.py:188} INFO - Completed cleaning and tranformation process. avstack.bronze_info -> avstack.silver_dept_info
+[2025-09-13T00:05:59.224+0000] {logging_mixin.py:188} INFO - Original record count: 45
+[2025-09-13T00:05:59.289+0000] {logging_mixin.py:188} INFO - Cleaned record count: 45
+[2025-09-13T00:05:59.290+0000] {logging_mixin.py:188} INFO - [INFO] Successfully loaded data into silver_dept_info
+[2025-09-13T00:05:59.290+0000] {logging_mixin.py:188} INFO - [INFO] Loading data into silver_arr_info
+[2025-09-13T00:05:59.290+0000] {logging_mixin.py:188} INFO - Starting cleaning and transformation process. avstack.bronze_info -> avstack.silver_arr_info
+[2025-09-13T00:05:59.450+0000] {logging_mixin.py:188} INFO - Completed cleaning and tranformation process. avstack.bronze_info -> avstack.silver_arr_info
+[2025-09-13T00:05:59.486+0000] {logging_mixin.py:188} INFO - Original record count: 45
+[2025-09-13T00:05:59.526+0000] {logging_mixin.py:188} INFO - Cleaned record count: 45
+[2025-09-13T00:05:59.526+0000] {logging_mixin.py:188} INFO - [INFO] Successfully loaded data into silver_arr_info
+[2025-09-13T00:05:59.527+0000] {python.py:201} INFO - Done. Returned value was: None
+[2025-09-13T00:05:59.533+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=aviationstack_kafka_dag, task_id=run_silver_load, execution_date=20250912T080000, start_date=20250913T000555, end_date=20250913T000559
+[2025-09-13T00:05:59.574+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-09-13T00:05:59.584+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

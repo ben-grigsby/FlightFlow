@@ -5,6 +5,7 @@ pyspark
 pandas
 apache-airflow==2.8.1 
 apache-airflow-providers-postgres
+python-dotenv
 
 
 

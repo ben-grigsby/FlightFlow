@@ -8,3 +8,8 @@ as_message_0.json
 as_message_1.json
 
 etl/sql_test.py
+config.py
+
+.env
+venv/
+__pycache__/
