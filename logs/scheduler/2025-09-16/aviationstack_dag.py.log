@@ -8833,3 +8833,58 @@
 [2025-09-16T08:59:26.704+0000] {logging_mixin.py:188} INFO - [2025-09-16T08:59:26.704+0000] {dag.py:3036} INFO - Sync 1 DAGs
 [2025-09-16T08:59:26.712+0000] {logging_mixin.py:188} INFO - [2025-09-16T08:59:26.712+0000] {dag.py:3823} INFO - Setting next_dagrun for aviationstack_pipeline_dag to 2025-09-16 04:00:00+00:00, run_after=2025-09-16 08:00:00+00:00
 [2025-09-16T08:59:26.722+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/aviationstack_dag.py took 0.112 seconds
+[2025-09-16T08:59:56.971+0000] {processor.py:161} INFO - Started process (PID=2389) to work on /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T08:59:56.972+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/aviationstack_dag.py for tasks to queue
+[2025-09-16T08:59:56.974+0000] {logging_mixin.py:188} INFO - [2025-09-16T08:59:56.973+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T08:59:57.026+0000] {logging_mixin.py:188} INFO - [2025-09-16T08:59:57.026+0000] {conn.py:396} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connecting> [IPv4 ('172.18.0.4', 9092)]>: connecting to kafka:9092 [('172.18.0.4', 9092) IPv4]
+[2025-09-16T08:59:57.027+0000] {logging_mixin.py:188} INFO - [2025-09-16T08:59:57.027+0000] {conn.py:618} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <checking_api_versions_recv> [IPv4 ('172.18.0.4', 9092)]>: Broker version identified as 2.6
+[2025-09-16T08:59:57.028+0000] {logging_mixin.py:188} INFO - [2025-09-16T08:59:57.027+0000] {conn.py:457} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connected> [IPv4 ('172.18.0.4', 9092)]>: Connection complete.
+[2025-09-16T08:59:57.028+0000] {logging_mixin.py:188} INFO - [2025-09-16T08:59:57.028+0000] {subscription_state.py:181} INFO - Updating subscribed topics to: ('aviation_flight_data',)
+[2025-09-16T08:59:57.062+0000] {processor.py:840} INFO - DAG(s) 'aviationstack_pipeline_dag' retrieved from /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T08:59:57.071+0000] {logging_mixin.py:188} INFO - [2025-09-16T08:59:57.071+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-16T08:59:57.078+0000] {logging_mixin.py:188} INFO - [2025-09-16T08:59:57.078+0000] {dag.py:3823} INFO - Setting next_dagrun for aviationstack_pipeline_dag to 2025-09-16 04:00:00+00:00, run_after=2025-09-16 08:00:00+00:00
+[2025-09-16T08:59:57.084+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/aviationstack_dag.py took 0.115 seconds
+[2025-09-16T09:00:27.280+0000] {processor.py:161} INFO - Started process (PID=2423) to work on /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T09:00:27.281+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/aviationstack_dag.py for tasks to queue
+[2025-09-16T09:00:27.281+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:27.281+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T09:00:27.322+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:27.322+0000] {conn.py:396} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connecting> [IPv4 ('172.18.0.4', 9092)]>: connecting to kafka:9092 [('172.18.0.4', 9092) IPv4]
+[2025-09-16T09:00:27.323+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:27.323+0000] {conn.py:618} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <checking_api_versions_recv> [IPv4 ('172.18.0.4', 9092)]>: Broker version identified as 2.6
+[2025-09-16T09:00:27.324+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:27.323+0000] {conn.py:457} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connected> [IPv4 ('172.18.0.4', 9092)]>: Connection complete.
+[2025-09-16T09:00:27.324+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:27.324+0000] {subscription_state.py:181} INFO - Updating subscribed topics to: ('aviation_flight_data',)
+[2025-09-16T09:00:27.360+0000] {processor.py:840} INFO - DAG(s) 'aviationstack_pipeline_dag' retrieved from /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T09:00:27.372+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:27.372+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-16T09:00:27.380+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:27.380+0000] {dag.py:3823} INFO - Setting next_dagrun for aviationstack_pipeline_dag to 2025-09-16 04:00:00+00:00, run_after=2025-09-16 08:00:00+00:00
+[2025-09-16T09:00:27.386+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/aviationstack_dag.py took 0.108 seconds
+[2025-09-16T09:00:57.601+0000] {processor.py:161} INFO - Started process (PID=2448) to work on /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T09:00:57.602+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/aviationstack_dag.py for tasks to queue
+[2025-09-16T09:00:57.602+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:57.602+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T09:00:57.646+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:57.646+0000] {conn.py:396} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connecting> [IPv4 ('172.18.0.4', 9092)]>: connecting to kafka:9092 [('172.18.0.4', 9092) IPv4]
+[2025-09-16T09:00:57.647+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:57.647+0000] {conn.py:618} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <checking_api_versions_recv> [IPv4 ('172.18.0.4', 9092)]>: Broker version identified as 2.6
+[2025-09-16T09:00:57.647+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:57.647+0000] {conn.py:457} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connected> [IPv4 ('172.18.0.4', 9092)]>: Connection complete.
+[2025-09-16T09:00:57.648+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:57.647+0000] {subscription_state.py:181} INFO - Updating subscribed topics to: ('aviation_flight_data',)
+[2025-09-16T09:00:57.679+0000] {processor.py:840} INFO - DAG(s) 'aviationstack_pipeline_dag' retrieved from /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T09:00:57.688+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:57.688+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-16T09:00:57.695+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:57.695+0000] {dag.py:3823} INFO - Setting next_dagrun for aviationstack_pipeline_dag to 2025-09-16 04:00:00+00:00, run_after=2025-09-16 08:00:00+00:00
+[2025-09-16T09:00:57.701+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/aviationstack_dag.py took 0.101 seconds
+[2025-09-16T09:01:27.982+0000] {processor.py:161} INFO - Started process (PID=2473) to work on /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T09:01:27.983+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/aviationstack_dag.py for tasks to queue
+[2025-09-16T09:01:27.984+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:27.983+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T09:01:28.040+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:28.040+0000] {conn.py:396} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connecting> [IPv4 ('172.18.0.4', 9092)]>: connecting to kafka:9092 [('172.18.0.4', 9092) IPv4]
+[2025-09-16T09:01:28.042+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:28.042+0000] {conn.py:618} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <checking_api_versions_recv> [IPv4 ('172.18.0.4', 9092)]>: Broker version identified as 2.6
+[2025-09-16T09:01:28.042+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:28.042+0000] {conn.py:457} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connected> [IPv4 ('172.18.0.4', 9092)]>: Connection complete.
+[2025-09-16T09:01:28.043+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:28.043+0000] {subscription_state.py:181} INFO - Updating subscribed topics to: ('aviation_flight_data',)
+[2025-09-16T09:01:28.077+0000] {processor.py:840} INFO - DAG(s) 'aviationstack_pipeline_dag' retrieved from /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T09:01:28.087+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:28.087+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-16T09:01:28.094+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:28.094+0000] {dag.py:3823} INFO - Setting next_dagrun for aviationstack_pipeline_dag to 2025-09-16 04:00:00+00:00, run_after=2025-09-16 08:00:00+00:00
+[2025-09-16T09:01:28.100+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/aviationstack_dag.py took 0.121 seconds
+[2025-09-16T09:01:58.352+0000] {processor.py:161} INFO - Started process (PID=2500) to work on /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T09:01:58.353+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/aviationstack_dag.py for tasks to queue
+[2025-09-16T09:01:58.354+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:58.353+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T09:01:58.405+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:58.404+0000] {conn.py:396} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connecting> [IPv4 ('172.18.0.4', 9092)]>: connecting to kafka:9092 [('172.18.0.4', 9092) IPv4]
+[2025-09-16T09:01:58.406+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:58.406+0000] {conn.py:618} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <checking_api_versions_recv> [IPv4 ('172.18.0.4', 9092)]>: Broker version identified as 2.6
+[2025-09-16T09:01:58.406+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:58.406+0000] {conn.py:457} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connected> [IPv4 ('172.18.0.4', 9092)]>: Connection complete.
+[2025-09-16T09:01:58.407+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:58.407+0000] {subscription_state.py:181} INFO - Updating subscribed topics to: ('aviation_flight_data',)
+[2025-09-16T09:01:58.441+0000] {processor.py:840} INFO - DAG(s) 'aviationstack_pipeline_dag' retrieved from /opt/airflow/dags/aviationstack_dag.py
+[2025-09-16T09:01:58.450+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:58.450+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-16T09:01:58.457+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:58.457+0000] {dag.py:3823} INFO - Setting next_dagrun for aviationstack_pipeline_dag to 2025-09-16 04:00:00+00:00, run_after=2025-09-16 08:00:00+00:00
+[2025-09-16T09:01:58.463+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/aviationstack_dag.py took 0.114 seconds

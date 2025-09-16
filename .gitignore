@@ -13,3 +13,6 @@ config.py
 .env
 venv/
 __pycache__/
+
+data/kafka_logs
+data/kafa_parquet

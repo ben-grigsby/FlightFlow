@@ -5180,3 +5180,31 @@ ImportError: cannot import name 'BashOperator' from 'airflow.operators.python' (
 [2025-09-16T08:59:51.948+0000] {logging_mixin.py:188} INFO - [2025-09-16T08:59:51.948+0000] {dag.py:3036} INFO - Sync 1 DAGs
 [2025-09-16T08:59:51.957+0000] {logging_mixin.py:188} INFO - [2025-09-16T08:59:51.957+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_data_streaming_dag to 2025-09-15 09:00:00+00:00, run_after=2025-09-16 09:00:00+00:00
 [2025-09-16T08:59:51.964+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_data_streaming_dag.py took 0.046 seconds
+[2025-09-16T09:00:22.243+0000] {processor.py:161} INFO - Started process (PID=2416) to work on /opt/airflow/dags/opensky_data_streaming_dag.py
+[2025-09-16T09:00:22.244+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_data_streaming_dag.py for tasks to queue
+[2025-09-16T09:00:22.245+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:22.245+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_data_streaming_dag.py
+[2025-09-16T09:00:22.254+0000] {processor.py:840} INFO - DAG(s) 'opensky_data_streaming_dag' retrieved from /opt/airflow/dags/opensky_data_streaming_dag.py
+[2025-09-16T09:00:22.270+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:22.270+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-16T09:00:22.279+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:22.279+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_data_streaming_dag to 2025-09-16 09:00:00+00:00, run_after=2025-09-17 09:00:00+00:00
+[2025-09-16T09:00:22.286+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_data_streaming_dag.py took 0.046 seconds
+[2025-09-16T09:00:52.556+0000] {processor.py:161} INFO - Started process (PID=2442) to work on /opt/airflow/dags/opensky_data_streaming_dag.py
+[2025-09-16T09:00:52.557+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_data_streaming_dag.py for tasks to queue
+[2025-09-16T09:00:52.558+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:52.557+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_data_streaming_dag.py
+[2025-09-16T09:00:52.569+0000] {processor.py:840} INFO - DAG(s) 'opensky_data_streaming_dag' retrieved from /opt/airflow/dags/opensky_data_streaming_dag.py
+[2025-09-16T09:00:52.586+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:52.585+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-16T09:00:52.594+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:00:52.594+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_data_streaming_dag to 2025-09-16 09:00:00+00:00, run_after=2025-09-17 09:00:00+00:00
+[2025-09-16T09:00:52.601+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_data_streaming_dag.py took 0.048 seconds
+[2025-09-16T09:01:22.922+0000] {processor.py:161} INFO - Started process (PID=2468) to work on /opt/airflow/dags/opensky_data_streaming_dag.py
+[2025-09-16T09:01:22.923+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_data_streaming_dag.py for tasks to queue
+[2025-09-16T09:01:22.923+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:22.923+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_data_streaming_dag.py
+[2025-09-16T09:01:22.932+0000] {processor.py:840} INFO - DAG(s) 'opensky_data_streaming_dag' retrieved from /opt/airflow/dags/opensky_data_streaming_dag.py
+[2025-09-16T09:01:22.948+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:22.947+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-16T09:01:22.958+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:22.958+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_data_streaming_dag to 2025-09-16 09:00:00+00:00, run_after=2025-09-17 09:00:00+00:00
+[2025-09-16T09:01:22.966+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_data_streaming_dag.py took 0.046 seconds
+[2025-09-16T09:01:53.296+0000] {processor.py:161} INFO - Started process (PID=2493) to work on /opt/airflow/dags/opensky_data_streaming_dag.py
+[2025-09-16T09:01:53.297+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_data_streaming_dag.py for tasks to queue
+[2025-09-16T09:01:53.298+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:53.297+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_data_streaming_dag.py
+[2025-09-16T09:01:53.305+0000] {processor.py:840} INFO - DAG(s) 'opensky_data_streaming_dag' retrieved from /opt/airflow/dags/opensky_data_streaming_dag.py
+[2025-09-16T09:01:53.321+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:53.321+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-16T09:01:53.333+0000] {logging_mixin.py:188} INFO - [2025-09-16T09:01:53.333+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_data_streaming_dag to 2025-09-16 09:00:00+00:00, run_after=2025-09-17 09:00:00+00:00
+[2025-09-16T09:01:53.340+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_data_streaming_dag.py took 0.047 seconds
