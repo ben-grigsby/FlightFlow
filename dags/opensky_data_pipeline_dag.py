@@ -12,7 +12,6 @@ import os
 sys.path.append("/opt/airflow/scripts/opensky")
 sys.path.append("/opt/airflow/etl")
 
-from kafka_producer import run_kafka_producer
 from kafka_consumer import run_kafka_consumer_slow
 
 from bronze.opensky.bronze_load import insert_into_bronze_ddl
@@ -28,7 +27,8 @@ with DAG(
 
     run_kafka_consumer_slow_dag = PythonOperator(
         task_id='run_kafka_consumer_slow',
-        python_callable=run_kafka_consumer_slow
+        python_callable=run_kafka_consumer_slow,
+        do_xcom_push=True
     )
 
     run_bronze_load_ddl = PythonOperator(

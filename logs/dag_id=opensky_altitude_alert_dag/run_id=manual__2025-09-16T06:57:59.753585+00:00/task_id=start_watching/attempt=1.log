@@ -1,0 +1,29 @@
+[2025-09-16T06:57:59.907+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: opensky_altitude_alert_dag.start_watching manual__2025-09-16T06:57:59.753585+00:00 [queued]>
+[2025-09-16T06:57:59.910+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: opensky_altitude_alert_dag.start_watching manual__2025-09-16T06:57:59.753585+00:00 [queued]>
+[2025-09-16T06:57:59.910+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-16T06:57:59.914+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): start_watching> on 2025-09-16 06:57:59.753585+00:00
+[2025-09-16T06:57:59.916+0000] {standard_task_runner.py:60} INFO - Started process 680 to run task
+[2025-09-16T06:57:59.917+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'opensky_altitude_alert_dag', 'start_watching', 'manual__2025-09-16T06:57:59.753585+00:00', '--job-id', '15', '--raw', '--subdir', 'DAGS_FOLDER/opensky_alt_alert_dag.py', '--cfg-path', '/tmp/tmpqjj2tv4n']
+[2025-09-16T06:57:59.918+0000] {standard_task_runner.py:88} INFO - Job 15: Subtask start_watching
+[2025-09-16T06:57:59.940+0000] {task_command.py:423} INFO - Running <TaskInstance: opensky_altitude_alert_dag.start_watching manual__2025-09-16T06:57:59.753585+00:00 [running]> on host 7b6d608462af
+[2025-09-16T06:57:59.970+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='opensky_altitude_alert_dag' AIRFLOW_CTX_TASK_ID='start_watching' AIRFLOW_CTX_EXECUTION_DATE='2025-09-16T06:57:59.753585+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-16T06:57:59.753585+00:00'
+[2025-09-16T06:57:59.971+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-09-16T06:57:59.972+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python3 /opt/airflow/scripts/opensky/bash_altitude_alert.py']
+[2025-09-16T06:57:59.975+0000] {subprocess.py:86} INFO - Output:
+[2025-09-16T06:57:59.983+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2025-09-16T06:57:59.984+0000] {subprocess.py:93} INFO -   File "/opt/airflow/scripts/opensky/bash_altitude_alert.py", line 5, in <module>
+[2025-09-16T06:57:59.984+0000] {subprocess.py:93} INFO -     from kafka_consumer_alert import run_kafka_consumer_fast
+[2025-09-16T06:57:59.984+0000] {subprocess.py:93} INFO - ModuleNotFoundError: No module named 'kafka_consumer_alert'
+[2025-09-16T06:57:59.985+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-09-16T06:57:59.991+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2025-09-16T06:57:59.992+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=opensky_altitude_alert_dag, task_id=start_watching, execution_date=20250916T065759, start_date=20250916T065759, end_date=20250916T065759
+[2025-09-16T06:57:59.996+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 15 for task start_watching (Bash command failed. The command returned a non-zero exit code 1.; 680)
+[2025-09-16T06:58:00.026+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-09-16T06:58:00.037+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -23,4 +23,4 @@
 
 SELECT DISTINCT silver_created_at FROM opensky.silver_main_table;
 
--- SELECT * FROM opensky.gold_flight_stats_by_country
+SELECT * FROM opensky.gold_flight_stats_by_country;

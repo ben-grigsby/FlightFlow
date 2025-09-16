@@ -2,10 +2,9 @@
 
 from airflow import DAG
 from airflow.operators.bash import BashOperator
-from datetime import datetime, timedelta
+from datetime import datetime
 
 import sys
-import os
 
 # Allow Airflow to import from outside the dags folder
 sys.path.append("/opt/airflow/scripts/opensky")
@@ -26,7 +25,7 @@ with DAG(
 
     wait_8_hours = BashOperator(
         task_id='wait_8_hours',
-        bash_command='sleep 60'
+        bash_command='sleep 300'
     )
 
     stop_streaming = BashOperator(

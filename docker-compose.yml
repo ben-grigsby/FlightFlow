@@ -94,6 +94,8 @@ services:
       - ./entrypoint.sh:/opt/airflow/entrypoint.sh
       - ./.env:/opt/airflow/.env
       - ./flightweather_dbt:/opt/airflow/flightweather_dbt
+      - ./data:/opt/airflow/data
+
     networks:
       - backend
 
@@ -128,6 +130,8 @@ services:
       - ./scripts:/opt/airflow/scripts
       - ./.env:/opt/airflow/.env
       - ./flightweather_dbt:/opt/airflow/flightweather_dbt
+      - ./data:/opt/airflow/data
+
     ports:
       - "8080:8080"
     command: webserver
@@ -167,6 +171,8 @@ services:
       - ./scripts:/opt/airflow/scripts
       - ./.env:/opt/airflow/.env
       - ./flightweather_dbt:/opt/airflow/flightweather_dbt
+      - ./data:/opt/airflow/data
+
     command: scheduler
     restart: always
     networks:

@@ -14,3 +14,55 @@
 [2025-09-16T03:13:46.667+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=opensky_data_streaming_dag, task_id=wait_8_hours, execution_date=20250914T090000, start_date=20250916T031246, end_date=20250916T031346
 [2025-09-16T03:13:46.710+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
 [2025-09-16T03:13:46.721+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-09-16T06:52:44.102+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: opensky_data_streaming_dag.wait_8_hours scheduled__2025-09-14T09:00:00+00:00 [queued]>
+[2025-09-16T06:52:44.105+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: opensky_data_streaming_dag.wait_8_hours scheduled__2025-09-14T09:00:00+00:00 [queued]>
+[2025-09-16T06:52:44.105+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-16T06:52:44.110+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): wait_8_hours> on 2025-09-14 09:00:00+00:00
+[2025-09-16T06:52:44.112+0000] {standard_task_runner.py:60} INFO - Started process 381 to run task
+[2025-09-16T06:52:44.113+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'opensky_data_streaming_dag', 'wait_8_hours', 'scheduled__2025-09-14T09:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/opensky_data_streaming_dag.py', '--cfg-path', '/tmp/tmpg8esvt01']
+[2025-09-16T06:52:44.114+0000] {standard_task_runner.py:88} INFO - Job 4: Subtask wait_8_hours
+[2025-09-16T06:52:44.137+0000] {task_command.py:423} INFO - Running <TaskInstance: opensky_data_streaming_dag.wait_8_hours scheduled__2025-09-14T09:00:00+00:00 [running]> on host 7b6d608462af
+[2025-09-16T06:52:44.164+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='opensky_data_streaming_dag' AIRFLOW_CTX_TASK_ID='wait_8_hours' AIRFLOW_CTX_EXECUTION_DATE='2025-09-14T09:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-09-14T09:00:00+00:00'
+[2025-09-16T06:52:44.165+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-09-16T06:52:44.165+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'sleep 28800']
+[2025-09-16T06:52:44.168+0000] {subprocess.py:86} INFO - Output:
+[2025-09-16T08:10:36.429+0000] {local_task_job_runner.py:121} ERROR - Received SIGTERM. Terminating subprocesses
+[2025-09-16T08:10:36.433+0000] {process_utils.py:131} INFO - Sending 15 to group 381. PIDs of all processes in the group: [385, 381]
+[2025-09-16T08:10:36.435+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 381
+[2025-09-16T08:10:36.438+0000] {taskinstance.py:2450} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-09-16T08:10:36.439+0000] {subprocess.py:104} INFO - Sending SIGTERM signal to process group
+[2025-09-16T08:10:36.447+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/bash.py", line 203, in execute
+    result = self.subprocess_hook.run_command(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/hooks/subprocess.py", line 91, in run_command
+    for raw_line in iter(self.sub_process.stdout.readline, b""):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 2452, in signal_handler
+    raise AirflowException("Task received SIGTERM signal")
+airflow.exceptions.AirflowException: Task received SIGTERM signal
+[2025-09-16T08:10:36.450+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=opensky_data_streaming_dag, task_id=wait_8_hours, execution_date=20250914T090000, start_date=20250916T065244, end_date=20250916T081036
+[2025-09-16T08:10:36.455+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 4 for task wait_8_hours (Task received SIGTERM signal; 381)
+[2025-09-16T08:10:36.468+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=385, status='terminated', started='06:52:43') (385) terminated with exit code None
+[2025-09-16T08:10:36.468+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=381, status='terminated', exitcode=1, started='06:52:43') (381) terminated with exit code 1
+[2025-09-16T08:10:36.468+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 143
+[2025-09-16T08:10:36.478+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-09-16T08:28:02.824+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: opensky_data_streaming_dag.wait_8_hours scheduled__2025-09-14T09:00:00+00:00 [queued]>
+[2025-09-16T08:28:02.827+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: opensky_data_streaming_dag.wait_8_hours scheduled__2025-09-14T09:00:00+00:00 [queued]>
+[2025-09-16T08:28:02.827+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-16T08:28:02.831+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): wait_8_hours> on 2025-09-14 09:00:00+00:00
+[2025-09-16T08:28:02.833+0000] {standard_task_runner.py:60} INFO - Started process 751 to run task
+[2025-09-16T08:28:02.834+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'opensky_data_streaming_dag', 'wait_8_hours', 'scheduled__2025-09-14T09:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/opensky_data_streaming_dag.py', '--cfg-path', '/tmp/tmpd4ivvfwe']
+[2025-09-16T08:28:02.837+0000] {standard_task_runner.py:88} INFO - Job 4: Subtask wait_8_hours
+[2025-09-16T08:28:02.859+0000] {task_command.py:423} INFO - Running <TaskInstance: opensky_data_streaming_dag.wait_8_hours scheduled__2025-09-14T09:00:00+00:00 [running]> on host 64220da1adfe
+[2025-09-16T08:28:02.886+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='opensky_data_streaming_dag' AIRFLOW_CTX_TASK_ID='wait_8_hours' AIRFLOW_CTX_EXECUTION_DATE='2025-09-14T09:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-09-14T09:00:00+00:00'
+[2025-09-16T08:28:02.887+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-09-16T08:28:02.887+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'sleep 300']
+[2025-09-16T08:28:02.890+0000] {subprocess.py:86} INFO - Output:
+[2025-09-16T08:33:02.897+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-09-16T08:33:02.924+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=opensky_data_streaming_dag, task_id=wait_8_hours, execution_date=20250914T090000, start_date=20250916T082802, end_date=20250916T083302
+[2025-09-16T08:33:02.974+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-09-16T08:33:02.986+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

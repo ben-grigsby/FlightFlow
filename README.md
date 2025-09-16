@@ -114,12 +114,12 @@ Then visit:
 
 ## DAG Scheduling Summary
 
-| DAG Name                        | Interval             | Purpose                                 |
-|-------------------------------|----------------------|-----------------------------------------|
-| `aviationstack_etl_dag`       | Every 4 hours        | Pulls & processes scheduled flight data |
-| `opensky_data_streaming_dag`  | Every 11 sec (9–16h) | Streams live flight data into Kafka     |
-| `opensky_kafka_consumer_dag`  | Every 5 min (9:05–17)| ETL for streamed data                   |
-| `opensky_altitude_alert_dag`  | Every 11 sec (9–16h) | Flags aircraft below critical altitude  |
+| DAG Name                        | Interval            | Purpose                                 |
+|-------------------------------|-----------------------|-----------------------------------------|
+| `aviationstack_etl_dag`       | Every 4 hours         | Pulls & processes scheduled flight data |
+| `opensky_data_streaming_dag`  | Every 11 sec (9–16h)  | Streams live flight data into Kafka     |
+| `opensky_kafka_consumer_dag`  | Every 5 min (9:05–17h)| ETL for streamed data                   |
+| `opensky_altitude_alert_dag`  | Every 11 sec (9–16h)  | Flags aircraft below critical altitude  |
 
 ---
 

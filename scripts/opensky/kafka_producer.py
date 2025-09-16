@@ -11,6 +11,15 @@ import requests
 import time
 
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+log_file = os.path.join(BASE_DIR, "..", "..", "data", "logs", "data_streaming.log")
+os.makedirs(os.path.dirname(log_file), exist_ok=True)
+
+
+def timestamp():
+    return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
 # ==================================================================
 # Action
 # ==================================================================
@@ -22,22 +31,20 @@ def run_kafka_producer():
         max_request_size=20000000
     )
 
-    log = LoggingMixin().log
-
     URL = "https://opensky-network.org/api/states/all"
-    log.info("Requesting data from OpenSky API.")
 
     try:
         response = requests.get(URL)
         response.raise_for_status()
     except requests.RequestException as e:
-        log.error(f"OpenSky API request failed: {e}")
+        with open(log_file, "a") as f:
+            f.write(f"\n [{timestamp()}] [ERROR] OpenSky API request failed: {e}")
         return
 
     data = response.json()
-    log.info("Sending full payload...")
 
     producer.send("opensky_data", value=data)
     producer.flush()
-    log.info(f"API response keys: {data.keys()}")
-    log.info("Sent.")
+    with open(log_file, "a") as f:
+        f.write(f"\n[{timestamp()}] [INFO] API response keys: {data.keys()}")
+
