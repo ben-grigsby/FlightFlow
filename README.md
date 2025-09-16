@@ -112,7 +112,7 @@ Then visit:
 
 ---
 
-## ✅ DAG Scheduling Summary
+## DAG Scheduling Summary
 
 | DAG Name                        | Interval             | Purpose                                 |
 |-------------------------------|----------------------|-----------------------------------------|
@@ -123,7 +123,7 @@ Then visit:
 
 ---
 
-## 📈 Future Additions
+## Future Additions
 
 - Prometheus + Grafana for monitoring DAG runs, Kafka throughput
 - Streamlit dashboard for live aircraft visualizations
@@ -132,7 +132,7 @@ Then visit:
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Ben Grigsby**  
 Statistics & ML Student @ UC Davis  
