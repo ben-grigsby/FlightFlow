@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS avstack.gold_dim_airport_info (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_icao ON avstack.gold_dim_airline_info (icao);
+CREATE INDEX idx_av_gold_icao ON avstack.gold_dim_airport_info (icao);
 
 
 CREATE TABLE IF NOT EXISTS avstack.gold_dim_airline_info (
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS avstack.gold_dim_airline_info (
 );
 
 
-CREATE INDEX idx_airline_icao ON avstack.gold_dim_airline_info (airline_icao);
+CREATE INDEX idx_av_gold_airline_icao ON avstack.gold_dim_airline_info (airline_icao);
 
 
 CREATE TABLE IF NOT EXISTS avstack.gold_dim_flight_info (
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS avstack.gold_dim_flight_info (
 );
 
 
-CREATE INDEX idx_flight_icao ON avstack.gold_dim_flight_info (flight_icao);
+CREATE INDEX idx_av_gold_flight_icao ON avstack.gold_dim_flight_info (flight_icao);
 
 
 CREATE TABLE IF NOT EXISTS avstack.gold_fact_arr_dept_table (

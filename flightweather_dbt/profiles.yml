@@ -1,0 +1,12 @@
+flightweather_dbt:  # this must match the profile name you use in the dbt run command
+  target: dev
+  outputs:
+    dev:
+      type: postgres  # or redshift, bigquery, etc.
+      host: postgres  # match docker service name if running locally
+      user: user
+      password: pass
+      dbname: flight_db
+      schema: opensky
+      port: 5432
+      threads: 2

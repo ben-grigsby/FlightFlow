@@ -1,0 +1,32 @@
+[2025-09-16T03:37:59.825+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: opensky_data_pipeline_dag.dbt_run_silver manual__2025-09-16T03:37:52.707724+00:00 [queued]>
+[2025-09-16T03:37:59.828+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: opensky_data_pipeline_dag.dbt_run_silver manual__2025-09-16T03:37:52.707724+00:00 [queued]>
+[2025-09-16T03:37:59.828+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-16T03:37:59.832+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): dbt_run_silver> on 2025-09-16 03:37:52.707724+00:00
+[2025-09-16T03:37:59.834+0000] {standard_task_runner.py:60} INFO - Started process 1827 to run task
+[2025-09-16T03:37:59.835+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'opensky_data_pipeline_dag', 'dbt_run_silver', 'manual__2025-09-16T03:37:52.707724+00:00', '--job-id', '26', '--raw', '--subdir', 'DAGS_FOLDER/opensky_data_pipeline_dag.py', '--cfg-path', '/tmp/tmpnyy1dp18']
+[2025-09-16T03:37:59.836+0000] {standard_task_runner.py:88} INFO - Job 26: Subtask dbt_run_silver
+[2025-09-16T03:37:59.855+0000] {task_command.py:423} INFO - Running <TaskInstance: opensky_data_pipeline_dag.dbt_run_silver manual__2025-09-16T03:37:52.707724+00:00 [running]> on host d6bdfb507af9
+[2025-09-16T03:37:59.883+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='opensky_data_pipeline_dag' AIRFLOW_CTX_TASK_ID='dbt_run_silver' AIRFLOW_CTX_EXECUTION_DATE='2025-09-16T03:37:52.707724+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-16T03:37:52.707724+00:00'
+[2025-09-16T03:37:59.883+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-09-16T03:37:59.884+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/airflow/flightweather_dbt && dbt run --select tag:silver --profiles-dir .']
+[2025-09-16T03:37:59.887+0000] {subprocess.py:86} INFO - Output:
+[2025-09-16T03:38:00.417+0000] {subprocess.py:93} INFO - [0m03:38:00  Running with dbt=1.10.11
+[2025-09-16T03:38:00.504+0000] {subprocess.py:93} INFO - [0m03:38:00  Registered adapter: postgres=1.9.1
+[2025-09-16T03:38:00.620+0000] {subprocess.py:93} INFO - [0m03:38:00  Found 3 models, 1 source, 434 macros
+[2025-09-16T03:38:00.621+0000] {subprocess.py:93} INFO - [0m03:38:00
+[2025-09-16T03:38:00.621+0000] {subprocess.py:93} INFO - [0m03:38:00  Concurrency: 2 threads (target='dev')
+[2025-09-16T03:38:00.622+0000] {subprocess.py:93} INFO - [0m03:38:00
+[2025-09-16T03:38:00.659+0000] {subprocess.py:93} INFO - [0m03:38:00  1 of 2 START sql incremental model opensky.silver_main_table ................... [RUN]
+[2025-09-16T03:38:00.659+0000] {subprocess.py:93} INFO - [0m03:38:00  2 of 2 START sql incremental model opensky.silver_secondary_table .............. [RUN]
+[2025-09-16T03:38:00.768+0000] {subprocess.py:93} INFO - [0m03:38:00  1 of 2 OK created sql incremental model opensky.silver_main_table .............. [[32mINSERT 0 6302[0m in 0.11s]
+[2025-09-16T03:38:00.769+0000] {subprocess.py:93} INFO - [0m03:38:00  2 of 2 OK created sql incremental model opensky.silver_secondary_table ......... [[32mINSERT 0 6360[0m in 0.11s]
+[2025-09-16T03:38:00.777+0000] {subprocess.py:93} INFO - [0m03:38:00
+[2025-09-16T03:38:00.777+0000] {subprocess.py:93} INFO - [0m03:38:00  Finished running 2 incremental models in 0 hours 0 minutes and 0.15 seconds (0.15s).
+[2025-09-16T03:38:00.797+0000] {subprocess.py:93} INFO - [0m03:38:00
+[2025-09-16T03:38:00.797+0000] {subprocess.py:93} INFO - [0m03:38:00  [32mCompleted successfully[0m
+[2025-09-16T03:38:00.798+0000] {subprocess.py:93} INFO - [0m03:38:00
+[2025-09-16T03:38:00.798+0000] {subprocess.py:93} INFO - [0m03:38:00  Done. PASS=2 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=2
+[2025-09-16T03:38:02.052+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-09-16T03:38:02.062+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=opensky_data_pipeline_dag, task_id=dbt_run_silver, execution_date=20250916T033752, start_date=20250916T033759, end_date=20250916T033802
+[2025-09-16T03:38:02.090+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-09-16T03:38:02.099+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

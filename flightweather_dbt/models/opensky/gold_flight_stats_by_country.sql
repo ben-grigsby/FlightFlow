@@ -1,5 +1,10 @@
 -- models/opensky/gold_flight_stats_by_country.sql
 
+{{ config(
+    materialized='table',
+    tags=['gold']
+) }}
+
 SELECT
     origin_country,
     DATE_TRUNC('hour', silver_created_at) AS hour,

@@ -1,0 +1,28 @@
+[2025-09-15T09:07:58.685+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: opensky_pipeline_dag.run_bronze_load manual__2025-09-15T09:07:44.614815+00:00 [queued]>
+[2025-09-15T09:07:58.688+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: opensky_pipeline_dag.run_bronze_load manual__2025-09-15T09:07:44.614815+00:00 [queued]>
+[2025-09-15T09:07:58.688+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-15T09:07:58.691+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): run_bronze_load> on 2025-09-15 09:07:44.614815+00:00
+[2025-09-15T09:07:58.693+0000] {standard_task_runner.py:60} INFO - Started process 352 to run task
+[2025-09-15T09:07:58.695+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'opensky_pipeline_dag', 'run_bronze_load', 'manual__2025-09-15T09:07:44.614815+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/opensky_dag_slow.py', '--cfg-path', '/tmp/tmpzcpo3jrh']
+[2025-09-15T09:07:58.695+0000] {standard_task_runner.py:88} INFO - Job 7: Subtask run_bronze_load
+[2025-09-15T09:07:58.713+0000] {task_command.py:423} INFO - Running <TaskInstance: opensky_pipeline_dag.run_bronze_load manual__2025-09-15T09:07:44.614815+00:00 [running]> on host 61661f200529
+[2025-09-15T09:07:58.739+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='opensky_pipeline_dag' AIRFLOW_CTX_TASK_ID='run_bronze_load' AIRFLOW_CTX_EXECUTION_DATE='2025-09-15T09:07:44.614815+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-15T09:07:44.614815+00:00'
+[2025-09-15T09:07:58.740+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/etl/bronze/opensky/bronze_load.py", line 21, in insert_into_bronze_ddl
+    filepath = ti.xcon_pull(task_ids='run_kafka_consumer')
+               ^^^^^^^^^^^^
+AttributeError: 'TaskInstance' object has no attribute 'xcon_pull'
+[2025-09-15T09:07:58.743+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=opensky_pipeline_dag, task_id=run_bronze_load, execution_date=20250915T090744, start_date=20250915T090758, end_date=20250915T090758
+[2025-09-15T09:07:58.746+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 7 for task run_bronze_load ('TaskInstance' object has no attribute 'xcon_pull'; 352)
+[2025-09-15T09:07:58.752+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-09-15T09:07:58.760+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

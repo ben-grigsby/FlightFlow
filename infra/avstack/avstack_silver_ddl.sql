@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS avstack.silver_flight_info (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_flight_icao ON avstack.silver_flight_info (flight_icao);
-CREATE INDEX idx_airline_icao ON avstack.silver_flight_info (airline_icao);
+CREATE INDEX idx_av_silver_flight_icao ON avstack.silver_flight_info (flight_icao);
+CREATE INDEX idx_av_silver_airline_icao ON avstack.silver_flight_info (airline_icao);
 
 
 CREATE TABLE IF NOT EXISTS avstack.silver_dept_info (
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS avstack.silver_dept_info (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_icao ON avstack.silver_dept_info (icao);
+CREATE INDEX idx_av_silver_dept_icao ON avstack.silver_dept_info (icao);
 
 
 CREATE TABLE IF NOT EXISTS avstack.silver_arr_info (
@@ -66,4 +66,4 @@ CREATE TABLE IF NOT EXISTS avstack.silver_arr_info (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_icao ON avstack.silver_arr_info (icao;)
+CREATE INDEX idx_av_silver_arr_icao ON avstack.silver_arr_info (icao);

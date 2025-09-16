@@ -1,0 +1,29 @@
+[2025-09-16T01:59:00.536+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: opensky_pipeline_dag.dbt_run_silver manual__2025-09-16T01:58:42.854817+00:00 [queued]>
+[2025-09-16T01:59:00.539+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: opensky_pipeline_dag.dbt_run_silver manual__2025-09-16T01:58:42.854817+00:00 [queued]>
+[2025-09-16T01:59:00.539+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-16T01:59:00.542+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): dbt_run_silver> on 2025-09-16 01:58:42.854817+00:00
+[2025-09-16T01:59:00.544+0000] {standard_task_runner.py:60} INFO - Started process 205 to run task
+[2025-09-16T01:59:00.545+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'opensky_pipeline_dag', 'dbt_run_silver', 'manual__2025-09-16T01:58:42.854817+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/opensky_dag_slow.py', '--cfg-path', '/tmp/tmpwyhu6s_j']
+[2025-09-16T01:59:00.546+0000] {standard_task_runner.py:88} INFO - Job 5: Subtask dbt_run_silver
+[2025-09-16T01:59:00.563+0000] {task_command.py:423} INFO - Running <TaskInstance: opensky_pipeline_dag.dbt_run_silver manual__2025-09-16T01:58:42.854817+00:00 [running]> on host 47a9d86c97fb
+[2025-09-16T01:59:00.589+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='opensky_pipeline_dag' AIRFLOW_CTX_TASK_ID='dbt_run_silver' AIRFLOW_CTX_EXECUTION_DATE='2025-09-16T01:58:42.854817+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-16T01:58:42.854817+00:00'
+[2025-09-16T01:59:00.589+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-09-16T01:59:00.589+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/airflow/flightweather_dbt && dbt run --select tag:silver --profiles-dir .']
+[2025-09-16T01:59:00.592+0000] {subprocess.py:86} INFO - Output:
+[2025-09-16T01:59:01.234+0000] {subprocess.py:93} INFO - [0m01:59:01  Running with dbt=1.10.11
+[2025-09-16T01:59:01.236+0000] {subprocess.py:93} INFO - [0m01:59:01  Encountered an error:
+[2025-09-16T01:59:01.236+0000] {subprocess.py:93} INFO - Runtime Error
+[2025-09-16T01:59:01.236+0000] {subprocess.py:93} INFO -   Could not find profile named 'flightweather_dbt'
+[2025-09-16T01:59:02.607+0000] {subprocess.py:97} INFO - Command exited with return code 2
+[2025-09-16T01:59:02.612+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 2.
+[2025-09-16T01:59:02.613+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=opensky_pipeline_dag, task_id=dbt_run_silver, execution_date=20250916T015842, start_date=20250916T015900, end_date=20250916T015902
+[2025-09-16T01:59:02.618+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 5 for task dbt_run_silver (Bash command failed. The command returned a non-zero exit code 2.; 205)
+[2025-09-16T01:59:02.631+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-09-16T01:59:02.639+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

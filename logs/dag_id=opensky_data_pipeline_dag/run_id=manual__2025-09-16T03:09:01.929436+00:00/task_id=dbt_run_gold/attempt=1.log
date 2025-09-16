@@ -1,0 +1,30 @@
+[2025-09-16T03:09:11.980+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: opensky_data_pipeline_dag.dbt_run_gold manual__2025-09-16T03:09:01.929436+00:00 [queued]>
+[2025-09-16T03:09:11.983+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: opensky_data_pipeline_dag.dbt_run_gold manual__2025-09-16T03:09:01.929436+00:00 [queued]>
+[2025-09-16T03:09:11.983+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-16T03:09:11.986+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): dbt_run_gold> on 2025-09-16 03:09:01.929436+00:00
+[2025-09-16T03:09:11.988+0000] {standard_task_runner.py:60} INFO - Started process 631 to run task
+[2025-09-16T03:09:11.990+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'opensky_data_pipeline_dag', 'dbt_run_gold', 'manual__2025-09-16T03:09:01.929436+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/opensky_data_pipeline_dag.py', '--cfg-path', '/tmp/tmpif7gpnr7']
+[2025-09-16T03:09:11.990+0000] {standard_task_runner.py:88} INFO - Job 10: Subtask dbt_run_gold
+[2025-09-16T03:09:12.008+0000] {task_command.py:423} INFO - Running <TaskInstance: opensky_data_pipeline_dag.dbt_run_gold manual__2025-09-16T03:09:01.929436+00:00 [running]> on host d6bdfb507af9
+[2025-09-16T03:09:12.032+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='opensky_data_pipeline_dag' AIRFLOW_CTX_TASK_ID='dbt_run_gold' AIRFLOW_CTX_EXECUTION_DATE='2025-09-16T03:09:01.929436+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-16T03:09:01.929436+00:00'
+[2025-09-16T03:09:12.033+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-09-16T03:09:12.033+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/airflow/flightweather_dbt && dbt run --select tag:gold --profiles-dir .']
+[2025-09-16T03:09:12.036+0000] {subprocess.py:86} INFO - Output:
+[2025-09-16T03:09:12.549+0000] {subprocess.py:93} INFO - [0m03:09:12  Running with dbt=1.10.11
+[2025-09-16T03:09:12.628+0000] {subprocess.py:93} INFO - [0m03:09:12  Registered adapter: postgres=1.9.1
+[2025-09-16T03:09:12.739+0000] {subprocess.py:93} INFO - [0m03:09:12  Found 3 models, 1 source, 434 macros
+[2025-09-16T03:09:12.739+0000] {subprocess.py:93} INFO - [0m03:09:12
+[2025-09-16T03:09:12.740+0000] {subprocess.py:93} INFO - [0m03:09:12  Concurrency: 2 threads (target='dev')
+[2025-09-16T03:09:12.740+0000] {subprocess.py:93} INFO - [0m03:09:12
+[2025-09-16T03:09:12.776+0000] {subprocess.py:93} INFO - [0m03:09:12  1 of 1 START sql table model opensky.gold_flight_stats_by_country .............. [RUN]
+[2025-09-16T03:09:12.839+0000] {subprocess.py:93} INFO - [0m03:09:12  1 of 1 OK created sql table model opensky.gold_flight_stats_by_country ......... [[32mSELECT 97[0m in 0.06s]
+[2025-09-16T03:09:12.845+0000] {subprocess.py:93} INFO - [0m03:09:12
+[2025-09-16T03:09:12.845+0000] {subprocess.py:93} INFO - [0m03:09:12  Finished running 1 table model in 0 hours 0 minutes and 0.10 seconds (0.10s).
+[2025-09-16T03:09:12.860+0000] {subprocess.py:93} INFO - [0m03:09:12
+[2025-09-16T03:09:12.860+0000] {subprocess.py:93} INFO - [0m03:09:12  [32mCompleted successfully[0m
+[2025-09-16T03:09:12.861+0000] {subprocess.py:93} INFO - [0m03:09:12
+[2025-09-16T03:09:12.861+0000] {subprocess.py:93} INFO - [0m03:09:12  Done. PASS=1 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=1
+[2025-09-16T03:09:13.948+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-09-16T03:09:13.958+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=opensky_data_pipeline_dag, task_id=dbt_run_gold, execution_date=20250916T030901, start_date=20250916T030911, end_date=20250916T030913
+[2025-09-16T03:09:13.964+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-09-16T03:09:13.970+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

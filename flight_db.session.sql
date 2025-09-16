@@ -17,10 +17,10 @@
 -- SELECT * FROM avstack.bronze_info;
 
 
--- SELECT * FROM avstack.gold_dim_airport_info
+-- SELECT * FROM avstack.gold_dim_airport_info;
 
---SELECT * FROM opensky.bronze_info;
+-- SELECT * FROM opensky.bronze_info;
 
--- SELECT * FROM opensky.silver_main_table
+SELECT DISTINCT silver_created_at FROM opensky.silver_main_table;
 
-SELECT * FROM opensky.gold_flight_stats_by_country
+-- SELECT * FROM opensky.gold_flight_stats_by_country

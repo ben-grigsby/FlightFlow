@@ -18,9 +18,9 @@ def insert_into_bronze_ddl(ti, insert_query=bronze_insert):
     """
     log = LoggingMixin().log
 
-    filepath = ti.xcmon_pull(task_ids='run_kafka_consumer')
+    filepath = ti.xcom_pull(task_ids='run_kafka_consumer_slow')
 
-    hook = PostgresHook(postgre_conn_id='postres_default')
+    hook = PostgresHook(postgre_conn_id='postgres_default')
     conn = hook.get_conn()
     cur = conn.cursor()
 

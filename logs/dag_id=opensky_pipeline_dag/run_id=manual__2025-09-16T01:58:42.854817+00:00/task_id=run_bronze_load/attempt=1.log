@@ -1,0 +1,16 @@
+[2025-09-16T01:58:57.299+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: opensky_pipeline_dag.run_bronze_load manual__2025-09-16T01:58:42.854817+00:00 [queued]>
+[2025-09-16T01:58:57.301+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: opensky_pipeline_dag.run_bronze_load manual__2025-09-16T01:58:42.854817+00:00 [queued]>
+[2025-09-16T01:58:57.302+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-16T01:58:57.305+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): run_bronze_load> on 2025-09-16 01:58:42.854817+00:00
+[2025-09-16T01:58:57.307+0000] {standard_task_runner.py:60} INFO - Started process 202 to run task
+[2025-09-16T01:58:57.308+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'opensky_pipeline_dag', 'run_bronze_load', 'manual__2025-09-16T01:58:42.854817+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/opensky_dag_slow.py', '--cfg-path', '/tmp/tmpc1sr0jgm']
+[2025-09-16T01:58:57.308+0000] {standard_task_runner.py:88} INFO - Job 4: Subtask run_bronze_load
+[2025-09-16T01:58:57.327+0000] {task_command.py:423} INFO - Running <TaskInstance: opensky_pipeline_dag.run_bronze_load manual__2025-09-16T01:58:42.854817+00:00 [running]> on host 47a9d86c97fb
+[2025-09-16T01:58:57.353+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='opensky_pipeline_dag' AIRFLOW_CTX_TASK_ID='run_bronze_load' AIRFLOW_CTX_EXECUTION_DATE='2025-09-16T01:58:42.854817+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-16T01:58:42.854817+00:00'
+[2025-09-16T01:58:57.363+0000] {base.py:83} INFO - Using connection ID 'postgres_default' for task execution.
+[2025-09-16T01:58:57.373+0000] {bronze_load.py:30} INFO - Beginning to extract and load data into bronze_info table.
+[2025-09-16T01:58:57.974+0000] {bronze_load.py:36} INFO - Completed extracting and loading data int bronze_info table.
+[2025-09-16T01:58:57.976+0000] {python.py:201} INFO - Done. Returned value was: None
+[2025-09-16T01:58:57.980+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=opensky_pipeline_dag, task_id=run_bronze_load, execution_date=20250916T015842, start_date=20250916T015857, end_date=20250916T015857
+[2025-09-16T01:58:58.021+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-09-16T01:58:58.031+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

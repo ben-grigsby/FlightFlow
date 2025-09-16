@@ -8,6 +8,7 @@ import json
 import os
 import sys
 import requests
+import time
 
 
 # ==================================================================
@@ -40,5 +41,3 @@ def run_kafka_producer():
     producer.flush()
     log.info(f"API response keys: {data.keys()}")
     log.info("Sent.")
-
-run_kafka_producer()

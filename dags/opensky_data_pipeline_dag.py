@@ -1,4 +1,4 @@
-# dags/opensky_dag.py
+# dags/opensky_data_pipeline_dag.py
 
 from airflow import DAG
 from airflow.operators.python import PythonOperator
@@ -19,17 +19,12 @@ from bronze.opensky.bronze_load import insert_into_bronze_ddl
 
 
 with DAG(
-    'opensky_pipeline_dag',
-    schedule_interval='',
+    'opensky_data_pipeline_dag',
+    schedule_interval = '5-59/5 9-18 * * *',
     start_date=datetime(2023, 1, 1),
     catchup=False,
     tags=['opensky']
 ) as dag:
-    
-    run_kafka_producer_dag = PythonOperator(
-        task_id='run_kafka_producer',
-        python_callable=run_kafka_producer
-    )
 
     run_kafka_consumer_slow_dag = PythonOperator(
         task_id='run_kafka_consumer_slow',
@@ -44,15 +39,15 @@ with DAG(
 
     dbt_run_silver = BashOperator(
         task_id='dbt_run_silver',
-        bash_command='cd /opt/airflow/dbt && dbt run --select tag:silver --profiles-dir .',
+        bash_command='cd /opt/airflow/flightweather_dbt && dbt run --select tag:silver --profiles-dir .',
         dag=dag
     )
 
     dbt_run_gold = BashOperator(
         task_id='dbt_run_gold',
-        bash_command='cd /opt/airflow/dbt && dbt run --select tag:gold --profiles-dir .',
+        bash_command='cd /opt/airflow/flightweather_dbt && dbt run --select tag:gold --profiles-dir .',
         dag=dag
     )
-
-    run_kafka_producer_dag >> run_kafka_consumer_slow_dag >> run_bronze_load_ddl >> dbt_run_silver >> dbt_run_gold
+    
+    run_kafka_consumer_slow_dag >> run_bronze_load_ddl >> dbt_run_silver >> dbt_run_gold
 
