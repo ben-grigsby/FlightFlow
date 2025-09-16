@@ -1,140 +1,139 @@
-# Flight and Weather Streaming ETL Pipeline
+# FlightFlow
 
-## Overview
+**Real-Time and Batch ETL Pipeline for Global Flight Data**
 
-This project builds a streaming ETL pipeline to integrate and analyze real-time flight data from multiple sources. It pulls data from:
-
-- **OpenSky Network**: For real-time flight state vectors.
-- **AviationStack API**: For commercial flight schedule and status data.
-- **OpenWeather API** (optional): For weather enrichment data based on flight location.
-
-The pipeline joins, transforms, and stores the data in a PostgreSQL database for further analysis. The architecture is modular, allowing for new data sources or outputs to be added easily.
+FlightFlow is an end-to-end data engineering project that streams and processes real-world flight data using the OpenSky Network and AviationStack APIs. It incorporates streaming pipelines with Kafka, batch ingestion, DAG orchestration via Airflow, multi-layered data storage, and alerting on flight altitude violations — all while showcasing a production-grade data architecture.
 
 ---
 
 ## Features
 
-- Kafka-based streaming architecture
-- Modular producers and consumers
-- PostgreSQL integration
-- Data enrichment via external APIs
-- Schema-based and structured ingestion
-- Potential for visualization and dashboarding
+- **Real-Time Streaming**: Pulls flight data from OpenSky every 11 seconds, stores it in Kafka.
+- **Batch ETL**: Ingests AviationStack API data every 4 hours and processes it through the full ETL pipeline.
+- **ETL Pipeline**: Data flows through Bronze → Silver → Gold layers.
+- **Kafka Consumer DAG**: Periodically pulls from Kafka to feed the pipeline (every 5 minutes).
+- **Airflow DAGs**: Handles orchestration, scheduling, and logging.
+- **Anomaly Detection**: Alerts when aircraft dip below a specified altitude.
+- **Logging & Monitoring**: Integrated logging for each DAG and streaming service.
+- **Scalable Structure**: Clean, modular folder design based on medallion architecture.
 
 ---
 
-## Project Structure
+## Folder Structure
 
-```text
-.
-├── docker-compose.yml
-├── Dockerfile
-├── dags/
-│   ├── aviationstack/
-│   │   ├── test_producer.py
-│   │   └── test_consumer.py
+```
+FlightFlow/
+├── dags/                            # Airflow DAG definitions
+│   ├── aviationstack_etl_dag.py
+│   ├── opensky_data_streaming_dag.py
+│   ├── opensky_kafka_consumer_dag.py
+│   └── opensky_altitude_alert_dag.py
+│
+├── scripts/                         # Python scripts for Kafka and preprocessing
 │   └── opensky/
-│       ├── test_producer.py
-│       ├── test_consumer.py
-│       └── utils.py
-├── etl/
-│   ├── postgre.py
-│   ├── SQL_functions.py
-│   └── sql_test.py
-├── infra/
-│   └── init_db.sql
-├── tests/
-│   └── sql_test.py
-└── README.md
+│       ├── bash_streaming.py       # Starts and manages the Kafka producer loop
+│       ├── kafka_producer.py
+│       ├── kafka_consumer.py
+│       ├── alert_checker.py        # Altitude-based anomaly detection
+│       └── transform_utils.py      # Cleans and enriches raw flight data
+│
+├── data/                            # Output data and Kafka logs
+│   └── kafka_logs/
+│       └── opensky/
+│           └── as_message_*.json
+│
+├── etl/                             # Modular ETL layer scripts
+│   ├── bronze_layer.py
+│   ├── silver_layer.py
+│   ├── gold_layer.py
+│   └── utils.py
+│
+├── docker-compose.yml               # Kafka, Airflow, PostgreSQL services
+├── requirements.txt                 # Python dependencies
+├── README.md                        # This file
+└── .env                             # API keys and config variables
 ```
 
 ---
 
-## Pipeline Architecture
+## Components
 
-```text
-+----------------------+
-|   OpenSky API        |
-+----------------------+
-           |
-           v
-+----------------------+
-|  Kafka Producer      |
-+----------------------+
-           |
-           v
-+----------------------+
-|   Kafka Topic        |
-+----------------------+
-           |
-           v
-+----------------------+
-|  Kafka Consumer      |
-+----------------------+
-           |
-           v
-+----------------------+       +----------------------+
-| Transformed Flight   |<----->| AviationStack API     |
-| Data (Merged, Clean) |       +----------------------+
-           |
-           v
-+----------------------+
-|  Optional Enrichment |
-|    via OpenWeather   |
-+----------------------+
-           |
-           v
-+----------------------+
-|   PostgreSQL DB      |
-+----------------------+
+### 1. **Streaming with OpenSky + Kafka**
+
+- `bash_streaming.py` runs a loop calling `kafka_producer.py` every 11 seconds (9 AM–4 PM).
+- Sends JSON flight data into the `opensky_data` Kafka topic.
+
+### 2. **Kafka Consumer DAG**
+
+- `opensky_kafka_consumer_dag.py`: Pulls latest records from Kafka every 5 minutes (starts at 9:05 AM).
+- Outputs to `data/kafka_logs/opensky/`, then runs through the ETL layers.
+
+### 3. **Batch Ingestion from AviationStack**
+
+- `aviationstack_etl_dag.py`: Runs 3x/day (every 4 hours).
+- Batches scheduled flight info and processes it through Bronze → Gold.
+
+### 4. **Altitude Alert DAG**
+
+- `opensky_altitude_alert_dag.py`: Uses the same Kafka data but checks for aircraft flying below a configured altitude (e.g., 300 ft).
+- Emits logs/alerts for edge-case flight events.
+
+---
+
+## ETL Pipeline (Bronze → Silver → Gold)
+
+- **Bronze**: Raw ingestion (as-is).
+- **Silver**: Cleaned + filtered data (null handling, field renaming).
+- **Gold**: Business-ready metrics and aggregations (e.g., flights by airline, altitude trends, flight volume heatmaps).
+
+---
+
+## Setup
+
+### Prerequisites
+
+- Docker + Docker Compose
+- Python 3.9+
+- [OpenSky API key](https://opensky-network.org/) (optional for extended access)
+- [AviationStack API key](https://aviationstack.com/)
+
+### Quickstart
+
+```bash
+git clone https://github.com/ben-grigsby/FlightFlow.git
+cd FlightFlow
+cp .env.example .env  # Add your API keys
+docker-compose up --build
 ```
 
----
-
-## Planned Enhancements
-
-- Add Avro + Schema Registry for better serialization
-- Add Streamlit dashboard for flight tracking and filtering
-- Use Apache Airflow for orchestration
-- Optionally integrate Apache Iceberg or Delta Lake for large-scale historical storage
+Then visit:
+- Airflow UI: http://localhost:8080
+- Kafka (via container): `kafka:9092`
 
 ---
 
-## Setup & Deployment
+## ✅ DAG Scheduling Summary
 
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/flightweather.git
-   cd flightweather
-   ```
-
-2. Start the containers:
-   ```bash
-   docker-compose up --build
-   ```
-
-3. Run producers:
-   ```bash
-   docker exec -it stock_dev python3 dags/opensky/test_producer.py
-   docker exec -it stock_dev python3 dags/aviationstack/test_producer.py
-   ```
-
-4. Run consumers:
-   ```bash
-   docker exec -it stock_dev python3 dags/opensky/test_consumer.py
-   docker exec -it stock_dev python3 dags/aviationstack/test_consumer.py
-   ```
+| DAG Name                        | Interval             | Purpose                                 |
+|-------------------------------|----------------------|-----------------------------------------|
+| `aviationstack_etl_dag`       | Every 4 hours        | Pulls & processes scheduled flight data |
+| `opensky_data_streaming_dag`  | Every 11 sec (9–16h) | Streams live flight data into Kafka     |
+| `opensky_kafka_consumer_dag`  | Every 5 min (9:05–17)| ETL for streamed data                   |
+| `opensky_altitude_alert_dag`  | Every 11 sec (9–16h) | Flags aircraft below critical altitude  |
 
 ---
 
-## Database Initialization
+## 📈 Future Additions
 
-Your schema is created automatically by executing the SQL file located in:
-
-```text
-infra/init_db.sql
-```
+- Prometheus + Grafana for monitoring DAG runs, Kafka throughput
+- Streamlit dashboard for live aircraft visualizations
+- PostgreSQL or Snowflake warehouse integration
+- Airflow alert emails and SLAs
 
 ---
 
-Let me know if you want a version that includes weather dashboarding, Airflow orchestration, or file system enhancements.
+## 👨‍💻 Author
+
+**Ben Grigsby**  
+Statistics & ML Student @ UC Davis  
+[GitHub](https://github.com/ben-grigsby) • [LinkedIn](https://linkedin.com/in/ben-grigsby)
