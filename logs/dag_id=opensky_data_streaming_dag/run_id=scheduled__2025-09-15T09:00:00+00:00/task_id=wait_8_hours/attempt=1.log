@@ -10,3 +10,7 @@
 [2025-09-16T09:00:01.444+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
 [2025-09-16T09:00:01.444+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'sleep 300']
 [2025-09-16T09:00:01.447+0000] {subprocess.py:86} INFO - Output:
+[2025-09-16T09:05:01.405+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-09-16T09:05:01.432+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=opensky_data_streaming_dag, task_id=wait_8_hours, execution_date=20250915T090000, start_date=20250916T090001, end_date=20250916T090501
+[2025-09-16T09:05:01.459+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-09-16T09:05:01.469+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
