@@ -16,3 +16,4 @@ __pycache__/
 
 data/kafka_logs
 data/kafa_parquet
+data/logs
