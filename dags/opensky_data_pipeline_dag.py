@@ -22,6 +22,7 @@ with DAG(
     schedule_interval = '*/1 * * * *', # '5-59/5 9-18 * * *',
     start_date=datetime(2023, 1, 1),
     catchup=False,
+    max_active_runs=1,
     tags=['opensky']
 ) as dag:
 

@@ -1,17 +1,19 @@
-api_output.txt
-os_message_0.json
-os_message_1.json
-os_message_2.json
-os_message_3.json
-os_message_4.json
-as_message_0.json
-as_message_1.json
-
-etl/sql_test.py
-config.py
-
+# Environment
 .env
 venv/
 __pycache__/
 
-data
+# Data + Logs
+data/
+logs/
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+
+# Tests
+etl/sql_test.py
+
+# Config (optional)
+config.py

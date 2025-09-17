@@ -5019,3 +5019,171 @@
 [2025-09-17T07:17:53.465+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:17:53.465+0000] {dag.py:3036} INFO - Sync 1 DAGs
 [2025-09-17T07:17:53.471+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:17:53.471+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
 [2025-09-17T07:17:53.479+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.047 seconds
+[2025-09-17T07:18:23.753+0000] {processor.py:161} INFO - Started process (PID=10918) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:18:23.754+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:18:23.755+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:18:23.754+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:18:23.761+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:18:23.776+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:18:23.776+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:18:23.782+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:18:23.781+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:18:23.789+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.038 seconds
+[2025-09-17T07:18:54.046+0000] {processor.py:161} INFO - Started process (PID=10939) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:18:54.046+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:18:54.047+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:18:54.047+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:18:54.055+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:18:54.071+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:18:54.071+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:18:54.076+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:18:54.076+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:18:54.082+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.040 seconds
+[2025-09-17T07:19:24.567+0000] {processor.py:161} INFO - Started process (PID=10973) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:19:24.568+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:19:24.569+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:19:24.569+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:19:24.578+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:19:24.595+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:19:24.595+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:19:24.600+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:19:24.600+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:19:24.608+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.043 seconds
+[2025-09-17T07:19:54.902+0000] {processor.py:161} INFO - Started process (PID=10994) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:19:54.903+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:19:54.904+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:19:54.903+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:19:54.914+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:19:54.931+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:19:54.931+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:19:54.937+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:19:54.936+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:19:54.945+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.046 seconds
+[2025-09-17T07:20:25.198+0000] {processor.py:161} INFO - Started process (PID=11022) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:20:25.199+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:20:25.200+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:20:25.200+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:20:25.209+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:20:25.228+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:20:25.227+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:20:25.233+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:20:25.233+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:20:25.241+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.045 seconds
+[2025-09-17T07:20:55.500+0000] {processor.py:161} INFO - Started process (PID=11043) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:20:55.501+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:20:55.502+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:20:55.502+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:20:55.511+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:20:55.526+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:20:55.526+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:20:55.532+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:20:55.532+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:20:55.541+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.044 seconds
+[2025-09-17T07:21:25.782+0000] {processor.py:161} INFO - Started process (PID=11138) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:21:25.783+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:21:25.784+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:21:25.783+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:21:25.792+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:21:25.808+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:21:25.808+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:21:25.813+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:21:25.813+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:21:25.820+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.041 seconds
+[2025-09-17T07:21:56.081+0000] {processor.py:161} INFO - Started process (PID=11211) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:21:56.082+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:21:56.083+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:21:56.083+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:21:56.094+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:21:56.112+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:21:56.111+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:21:56.116+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:21:56.116+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:21:56.124+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.046 seconds
+[2025-09-17T07:22:26.363+0000] {processor.py:161} INFO - Started process (PID=11275) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:22:26.364+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:22:26.364+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:22:26.364+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:22:26.373+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:22:26.390+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:22:26.390+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:22:26.395+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:22:26.395+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:22:26.403+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.043 seconds
+[2025-09-17T07:22:56.709+0000] {processor.py:161} INFO - Started process (PID=11311) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:22:56.710+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:22:56.711+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:22:56.711+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:22:56.720+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:22:56.736+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:22:56.736+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:22:56.741+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:22:56.741+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:22:56.748+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.042 seconds
+[2025-09-17T07:23:27.035+0000] {processor.py:161} INFO - Started process (PID=11387) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:23:27.036+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:23:27.036+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:23:27.036+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:23:27.044+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:23:27.060+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:23:27.060+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:23:27.066+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:23:27.066+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:23:27.074+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.041 seconds
+[2025-09-17T07:23:57.376+0000] {processor.py:161} INFO - Started process (PID=11411) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:23:57.377+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:23:57.378+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:23:57.377+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:23:57.387+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:23:57.405+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:23:57.405+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:23:57.410+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:23:57.410+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:23:57.417+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.044 seconds
+[2025-09-17T07:24:27.684+0000] {processor.py:161} INFO - Started process (PID=11487) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:24:27.685+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:24:27.685+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:24:27.685+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:24:27.692+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:24:27.705+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:24:27.705+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:24:27.710+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:24:27.710+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:24:27.717+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.035 seconds
+[2025-09-17T07:24:57.991+0000] {processor.py:161} INFO - Started process (PID=11510) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:24:57.992+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:24:57.993+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:24:57.992+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:24:58.001+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:24:58.016+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:24:58.016+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:24:58.021+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:24:58.021+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:24:58.028+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.040 seconds
+[2025-09-17T07:25:28.246+0000] {processor.py:161} INFO - Started process (PID=11562) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:25:28.246+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:25:28.246+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:25:28.246+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:25:28.252+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:25:28.263+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:25:28.263+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:25:28.268+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:25:28.268+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:25:28.275+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.030 seconds
+[2025-09-17T07:25:58.527+0000] {processor.py:161} INFO - Started process (PID=11611) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:25:58.528+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:25:58.528+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:25:58.528+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:25:58.535+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:25:58.549+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:25:58.549+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:25:58.554+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:25:58.554+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:25:58.561+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.036 seconds
+[2025-09-17T07:26:28.834+0000] {processor.py:161} INFO - Started process (PID=11696) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:26:28.835+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:26:28.836+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:26:28.835+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:26:28.844+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:26:28.861+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:26:28.861+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:26:28.866+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:26:28.866+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:26:28.873+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.042 seconds
+[2025-09-17T07:26:59.131+0000] {processor.py:161} INFO - Started process (PID=11717) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:26:59.132+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:26:59.133+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:26:59.132+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:26:59.142+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:26:59.158+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:26:59.158+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:26:59.164+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:26:59.164+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:26:59.172+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.046 seconds
+[2025-09-17T07:27:29.438+0000] {processor.py:161} INFO - Started process (PID=11745) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:27:29.439+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:27:29.440+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:27:29.440+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:27:29.448+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:27:29.465+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:27:29.465+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:27:29.470+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:27:29.470+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:27:29.478+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.043 seconds
+[2025-09-17T07:27:59.733+0000] {processor.py:161} INFO - Started process (PID=11766) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:27:59.734+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:27:59.734+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:27:59.734+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:27:59.742+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:27:59.759+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:27:59.759+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:27:59.764+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:27:59.764+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:27:59.771+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.042 seconds
+[2025-09-17T07:28:30.074+0000] {processor.py:161} INFO - Started process (PID=11791) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:28:30.075+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:28:30.076+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:28:30.075+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:28:30.085+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:28:30.103+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:28:30.103+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:28:30.108+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:28:30.107+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:28:30.116+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.046 seconds
+[2025-09-17T07:29:00.402+0000] {processor.py:161} INFO - Started process (PID=11812) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:29:00.403+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:29:00.404+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:29:00.403+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:29:00.413+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:29:00.430+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:29:00.430+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:29:00.435+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:29:00.435+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:29:00.443+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.044 seconds
+[2025-09-17T07:29:30.724+0000] {processor.py:161} INFO - Started process (PID=11833) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:29:30.724+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:29:30.725+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:29:30.725+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:29:30.731+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:29:30.746+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:29:30.745+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:29:30.751+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:29:30.751+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:29:30.759+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.036 seconds
+[2025-09-17T07:30:01.040+0000] {processor.py:161} INFO - Started process (PID=11854) to work on /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:30:01.041+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/opensky_alt_alert_dag.py for tasks to queue
+[2025-09-17T07:30:01.042+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:30:01.041+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:30:01.049+0000] {processor.py:840} INFO - DAG(s) 'opensky_altitude_alert_dag' retrieved from /opt/airflow/dags/opensky_alt_alert_dag.py
+[2025-09-17T07:30:01.063+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:30:01.063+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-09-17T07:30:01.068+0000] {logging_mixin.py:188} INFO - [2025-09-17T07:30:01.068+0000] {dag.py:3823} INFO - Setting next_dagrun for opensky_altitude_alert_dag to None, run_after=None
+[2025-09-17T07:30:01.075+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/opensky_alt_alert_dag.py took 0.037 seconds
