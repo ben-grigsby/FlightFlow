@@ -21,3 +21,7 @@ WHERE
     {% if is_incremental() %}
     AND created_at > (SELECT MAX(bronze_created_at) FROM {{ this }})
     {% endif %}
+
+
+
+{% do log("silver_main_table at " ~ run_started_at, info=True) %}

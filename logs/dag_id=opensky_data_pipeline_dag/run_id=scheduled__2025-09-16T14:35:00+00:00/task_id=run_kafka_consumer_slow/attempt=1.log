@@ -1,0 +1,38 @@
+[2025-09-16T14:40:00.214+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: opensky_data_pipeline_dag.run_kafka_consumer_slow scheduled__2025-09-16T14:35:00+00:00 [queued]>
+[2025-09-16T14:40:00.216+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: opensky_data_pipeline_dag.run_kafka_consumer_slow scheduled__2025-09-16T14:35:00+00:00 [queued]>
+[2025-09-16T14:40:00.216+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-16T14:40:00.220+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): run_kafka_consumer_slow> on 2025-09-16 14:35:00+00:00
+[2025-09-16T14:40:00.222+0000] {standard_task_runner.py:60} INFO - Started process 8559 to run task
+[2025-09-16T14:40:00.223+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'opensky_data_pipeline_dag', 'run_kafka_consumer_slow', 'scheduled__2025-09-16T14:35:00+00:00', '--job-id', '91', '--raw', '--subdir', 'DAGS_FOLDER/opensky_data_pipeline_dag.py', '--cfg-path', '/tmp/tmpa4ic79ci']
+[2025-09-16T14:40:00.224+0000] {standard_task_runner.py:88} INFO - Job 91: Subtask run_kafka_consumer_slow
+[2025-09-16T14:40:00.242+0000] {task_command.py:423} INFO - Running <TaskInstance: opensky_data_pipeline_dag.run_kafka_consumer_slow scheduled__2025-09-16T14:35:00+00:00 [running]> on host 64220da1adfe
+[2025-09-16T14:40:00.339+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='opensky_data_pipeline_dag' AIRFLOW_CTX_TASK_ID='run_kafka_consumer_slow' AIRFLOW_CTX_EXECUTION_DATE='2025-09-16T14:35:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-09-16T14:35:00+00:00'
+[2025-09-16T14:40:00.340+0000] {kafka_consumer.py:37} INFO - Starting receiving process...
+[2025-09-16T14:40:00.340+0000] {conn.py:396} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connecting> [IPv4 ('172.18.0.4', 9092)]>: connecting to kafka:9092 [('172.18.0.4', 9092) IPv4]
+[2025-09-16T14:40:00.341+0000] {conn.py:618} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <checking_api_versions_recv> [IPv4 ('172.18.0.4', 9092)]>: Broker version identified as 2.6
+[2025-09-16T14:40:00.341+0000] {conn.py:457} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connected> [IPv4 ('172.18.0.4', 9092)]>: Connection complete.
+[2025-09-16T14:40:00.342+0000] {subscription_state.py:181} INFO - Updating subscribed topics to: ('opensky_data',)
+[2025-09-16T14:40:00.342+0000] {conn.py:396} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=1 host=kafka:9092 <connecting> [IPv4 ('172.18.0.4', 9092)]>: connecting to kafka:9092 [('172.18.0.4', 9092) IPv4]
+[2025-09-16T14:40:00.342+0000] {conn.py:457} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=1 host=kafka:9092 <connected> [IPv4 ('172.18.0.4', 9092)]>: Connection complete.
+[2025-09-16T14:40:00.343+0000] {conn.py:945} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=bootstrap-0 host=kafka:9092 <connected> [IPv4 ('172.18.0.4', 9092)]>: Closing connection. 
+[2025-09-16T14:40:00.450+0000] {cluster.py:401} INFO - Coordinator for group/opensky_full_pipeline_consumer_01 is ('coordinator-1', 'kafka', 9092, None)
+[2025-09-16T14:40:00.450+0000] {base.py:788} INFO - Discovered coordinator coordinator-1 for group opensky_full_pipeline_consumer_01
+[2025-09-16T14:40:00.450+0000] {base.py:848} INFO - Starting new heartbeat thread
+[2025-09-16T14:40:00.451+0000] {consumer.py:365} INFO - Revoking previously assigned partitions () for group opensky_full_pipeline_consumer_01
+[2025-09-16T14:40:00.451+0000] {base.py:419} INFO - Failed to join group opensky_full_pipeline_consumer_01: NodeNotReadyError: coordinator-1
+[2025-09-16T14:40:00.451+0000] {conn.py:396} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=coordinator-1 host=kafka:9092 <connecting> [IPv4 ('172.18.0.4', 9092)]>: connecting to kafka:9092 [('172.18.0.4', 9092) IPv4]
+[2025-09-16T14:40:00.452+0000] {conn.py:457} INFO - <BrokerConnection client_id=kafka-python-2.2.15, node_id=coordinator-1 host=kafka:9092 <connected> [IPv4 ('172.18.0.4', 9092)]>: Connection complete.
+[2025-09-16T14:40:00.561+0000] {base.py:532} INFO - (Re-)joining group opensky_full_pipeline_consumer_01
+[2025-09-16T14:40:00.565+0000] {base.py:637} INFO - Received member id kafka-python-2.2.15-d213ae00-7163-4b91-a7bf-c8d4117a3291 for group opensky_full_pipeline_consumer_01; will retry join-group
+[2025-09-16T14:40:00.565+0000] {base.py:419} INFO - Failed to join group opensky_full_pipeline_consumer_01: [Error 79] MemberIdRequiredError
+[2025-09-16T14:40:00.566+0000] {base.py:532} INFO - (Re-)joining group opensky_full_pipeline_consumer_01
+[2025-09-16T14:40:03.572+0000] {base.py:594} INFO - Successfully joined group opensky_full_pipeline_consumer_01 <Generation 64 (member_id: kafka-python-2.2.15-d213ae00-7163-4b91-a7bf-c8d4117a3291, protocol: range)>
+[2025-09-16T14:40:03.573+0000] {base.py:596} INFO - Elected group leader -- performing partition assignments using range
+[2025-09-16T14:40:03.576+0000] {subscription_state.py:254} INFO - Updated partition assignment: [('opensky_data', 0)]
+[2025-09-16T14:40:03.577+0000] {consumer.py:249} INFO - Setting newly assigned partitions (('opensky_data', 0),) for group opensky_full_pipeline_consumer_01
+[2025-09-16T14:40:19.333+0000] {kafka_consumer.py:77} INFO - Saved 263553 rows to Parquet at /opt/airflow/scripts/opensky/../../data/kafka_parquet/opensky_batch_20250916_144019.parquet
+[2025-09-16T14:40:19.333+0000] {base.py:1052} INFO - Stopping heartbeat thread
+[2025-09-16T14:40:19.369+0000] {python.py:201} INFO - Done. Returned value was: /opt/airflow/scripts/opensky/../../data/kafka_parquet/opensky_batch_20250916_144019.parquet
+[2025-09-16T14:40:19.378+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=opensky_data_pipeline_dag, task_id=run_kafka_consumer_slow, execution_date=20250916T143500, start_date=20250916T144000, end_date=20250916T144019
+[2025-09-16T14:40:19.418+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-09-16T14:40:19.494+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

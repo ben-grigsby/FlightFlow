@@ -10,9 +10,11 @@ import sys
 sys.path.append("/opt/airflow/scripts/opensky")
 sys.path.append("/opt/airflow/etl")
 
+pid_path = "/opt/airflow/data/streaming.pid"
+
 with DAG(
     'opensky_data_streaming_dag',
-    schedule_interval='0 9 * * *',
+    schedule_interval=None,
     start_date=datetime(2023, 1, 1),
     catchup=False,
     tags=['opensky']
@@ -29,8 +31,16 @@ with DAG(
     )
 
     stop_streaming = BashOperator(
-        task_id='stop_streaming',
-        bash_command='kill -9 $(cat /tmp/streaming.pid) && rm /tmp/streaming.pid || echo "No process to kill"'
+    task_id='stop_streaming',
+    bash_command="""
+    if [ -f /opt/airflow/data/streaming.pid ]; then
+        kill -9 $(cat /opt/airflow/data/streaming.pid) || true
+        rm -f /opt/airflow/data/streaming.pid || true
+        echo "Stopped streaming process."
+    else
+        echo "No process to kill"
+    fi
+    """
     )
 
     start_streaming >> wait_8_hours >> stop_streaming

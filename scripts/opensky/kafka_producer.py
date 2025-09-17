@@ -9,12 +9,14 @@ import os
 import sys
 import requests
 import time
+import logging
 
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-log_file = os.path.join(BASE_DIR, "..", "..", "data", "logs", "data_streaming.log")
-os.makedirs(os.path.dirname(log_file), exist_ok=True)
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# log_file = os.path.join(BASE_DIR, "..", "..", "data", "logs", "data_streaming.log")
+# os.makedirs(os.path.dirname(log_file), exist_ok=True)
 
+logger = logging.getLogger("data_streaming_logger")
 
 def timestamp():
     return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -37,14 +39,13 @@ def run_kafka_producer():
         response = requests.get(URL)
         response.raise_for_status()
     except requests.RequestException as e:
-        with open(log_file, "a") as f:
-            f.write(f"\n [{timestamp()}] [ERROR] OpenSky API request failed: {e}")
+        logger.error(f"OpenSky API request failed: {e}")
         return
 
     data = response.json()
 
     producer.send("opensky_data", value=data)
     producer.flush()
-    with open(log_file, "a") as f:
-        f.write(f"\n[{timestamp()}] [INFO] API response keys: {data.keys()}")
+
+    logger.info(f"API response keys: {data.keys()}")
 

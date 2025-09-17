@@ -1,0 +1,52 @@
+[2025-09-17T06:48:07.256+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: opensky_data_pipeline_dag.dbt_run_silver manual__2025-09-17T06:47:48.349512+00:00 [queued]>
+[2025-09-17T06:48:07.259+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: opensky_data_pipeline_dag.dbt_run_silver manual__2025-09-17T06:47:48.349512+00:00 [queued]>
+[2025-09-17T06:48:07.259+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-17T06:48:07.262+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): dbt_run_silver> on 2025-09-17 06:47:48.349512+00:00
+[2025-09-17T06:48:07.264+0000] {standard_task_runner.py:60} INFO - Started process 9537 to run task
+[2025-09-17T06:48:07.265+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'opensky_data_pipeline_dag', 'dbt_run_silver', 'manual__2025-09-17T06:47:48.349512+00:00', '--job-id', '76', '--raw', '--subdir', 'DAGS_FOLDER/opensky_data_pipeline_dag.py', '--cfg-path', '/tmp/tmp2h7xuy39']
+[2025-09-17T06:48:07.266+0000] {standard_task_runner.py:88} INFO - Job 76: Subtask dbt_run_silver
+[2025-09-17T06:48:07.283+0000] {task_command.py:423} INFO - Running <TaskInstance: opensky_data_pipeline_dag.dbt_run_silver manual__2025-09-17T06:47:48.349512+00:00 [running]> on host 769d9d26935d
+[2025-09-17T06:48:07.390+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='opensky_data_pipeline_dag' AIRFLOW_CTX_TASK_ID='dbt_run_silver' AIRFLOW_CTX_EXECUTION_DATE='2025-09-17T06:47:48.349512+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-17T06:47:48.349512+00:00'
+[2025-09-17T06:48:07.391+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-09-17T06:48:07.391+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/airflow/flightweather_dbt && dbt run --select tag:silver --profiles-dir .']
+[2025-09-17T06:48:07.394+0000] {subprocess.py:86} INFO - Output:
+[2025-09-17T06:48:07.900+0000] {subprocess.py:93} INFO - [0m06:48:07  Running with dbt=1.10.11
+[2025-09-17T06:48:07.978+0000] {subprocess.py:93} INFO - [0m06:48:07  Registered adapter: postgres=1.9.1
+[2025-09-17T06:48:08.100+0000] {subprocess.py:93} INFO - [0m06:48:08  silver_main_table at
+[2025-09-17T06:48:08.106+0000] {subprocess.py:93} INFO - [0m06:48:08  silver_secondary_table at
+[2025-09-17T06:48:08.108+0000] {subprocess.py:93} INFO - [0m06:48:08  gold_flight_stats_by_country last updated from silver at:
+[2025-09-17T06:48:08.188+0000] {subprocess.py:93} INFO - [0m06:48:08  Found 3 models, 1 source, 434 macros
+[2025-09-17T06:48:08.189+0000] {subprocess.py:93} INFO - [0m06:48:08
+[2025-09-17T06:48:08.189+0000] {subprocess.py:93} INFO - [0m06:48:08  Concurrency: 2 threads (target='dev')
+[2025-09-17T06:48:08.190+0000] {subprocess.py:93} INFO - [0m06:48:08
+[2025-09-17T06:48:08.226+0000] {subprocess.py:93} INFO - [0m06:48:08  1 of 2 START sql incremental model opensky.silver_main_table ................... [RUN]
+[2025-09-17T06:48:08.227+0000] {subprocess.py:93} INFO - [0m06:48:08  2 of 2 START sql incremental model opensky.silver_secondary_table .............. [RUN]
+[2025-09-17T06:48:08.238+0000] {subprocess.py:93} INFO - [0m06:48:08  2 of 2 ERROR creating sql incremental model opensky.silver_secondary_table ..... [[31mERROR[0m in 0.01s]
+[2025-09-17T06:48:08.239+0000] {subprocess.py:93} INFO - [0m06:48:08  1 of 2 ERROR creating sql incremental model opensky.silver_main_table .......... [[31mERROR[0m in 0.01s]
+[2025-09-17T06:48:08.246+0000] {subprocess.py:93} INFO - [0m06:48:08
+[2025-09-17T06:48:08.246+0000] {subprocess.py:93} INFO - [0m06:48:08  Finished running 2 incremental models in 0 hours 0 minutes and 0.06 seconds (0.06s).
+[2025-09-17T06:48:08.261+0000] {subprocess.py:93} INFO - [0m06:48:08
+[2025-09-17T06:48:08.262+0000] {subprocess.py:93} INFO - [0m06:48:08  [31mCompleted with 2 errors, 0 partial successes, and 0 warnings:[0m
+[2025-09-17T06:48:08.262+0000] {subprocess.py:93} INFO - [0m06:48:08
+[2025-09-17T06:48:08.262+0000] {subprocess.py:93} INFO - [0m06:48:08  [31mFailure in model silver_secondary_table (models/opensky/silver_secondary_table.sql)[0m
+[2025-09-17T06:48:08.262+0000] {subprocess.py:93} INFO - [0m06:48:08    Compilation Error in model silver_secondary_table (models/opensky/silver_secondary_table.sql)
+[2025-09-17T06:48:08.262+0000] {subprocess.py:93} INFO -   'dict object' has no attribute 'now'. This can happen when calling a macro that does not exist. Check for typos and/or install package dependencies with "dbt deps".
+[2025-09-17T06:48:08.262+0000] {subprocess.py:93} INFO - [0m06:48:08
+[2025-09-17T06:48:08.263+0000] {subprocess.py:93} INFO - [0m06:48:08  [31mFailure in model silver_main_table (models/opensky/silver_main_table.sql)[0m
+[2025-09-17T06:48:08.263+0000] {subprocess.py:93} INFO - [0m06:48:08    Compilation Error in model silver_main_table (models/opensky/silver_main_table.sql)
+[2025-09-17T06:48:08.263+0000] {subprocess.py:93} INFO -   'dict object' has no attribute 'now'. This can happen when calling a macro that does not exist. Check for typos and/or install package dependencies with "dbt deps".
+[2025-09-17T06:48:08.263+0000] {subprocess.py:93} INFO - [0m06:48:08
+[2025-09-17T06:48:08.263+0000] {subprocess.py:93} INFO - [0m06:48:08  Done. PASS=0 WARN=0 ERROR=2 SKIP=0 NO-OP=0 TOTAL=2
+[2025-09-17T06:48:09.358+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-09-17T06:48:09.363+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2025-09-17T06:48:09.365+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=opensky_data_pipeline_dag, task_id=dbt_run_silver, execution_date=20250917T064748, start_date=20250917T064807, end_date=20250917T064809
+[2025-09-17T06:48:09.369+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 76 for task dbt_run_silver (Bash command failed. The command returned a non-zero exit code 1.; 9537)
+[2025-09-17T06:48:09.380+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-09-17T06:48:09.389+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

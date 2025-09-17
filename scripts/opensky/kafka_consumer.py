@@ -11,14 +11,17 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 log_file_r = os.path.join(BASE_DIR, "..", "..", "data", "logs", "data_receiving.log")
 os.makedirs(os.path.dirname(log_file_r), exist_ok=True)
 
-logger = logging.getLogger("data_receiving_logger")
-logger.setLevel(logging.INFO)
+def get_data_receiving_logger():
+    logger = logging.getLogger("data_pipeline_logger")
+    logger.setLevel(logging.INFO)
 
-if not logger.handlers:
-    fh = logging.FileHandler(log_file_r)
-    formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s", "%Y-%m-%d %H:%M:%S")
-    fh.setFormatter(formatter)
-    logger.addHandler(fh)
+    if not logger.handlers:
+        fh = logging.FileHandler(log_file_r)
+        formatter = logging.Formatter("%(asctime)s [%(levelname)s] %(message)s", "%Y-%m-%d %H:%M:%S")
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
+
+    return logger
 
 # Define expected OpenSky state vector schema
 COLUMNS = [
@@ -32,8 +35,8 @@ COLUMNS = [
 
 
 
-
 def run_kafka_consumer_slow():
+    logger = get_data_receiving_logger()
     logger.info("Starting receiving process...")
 
     consumer = KafkaConsumer(

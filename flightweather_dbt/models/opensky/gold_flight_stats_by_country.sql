@@ -15,3 +15,7 @@ SELECT
 FROM {{ ref('silver_main_table') }}
 GROUP BY origin_country, hour
 ORDER BY hour DESC, num_flights DESC
+
+
+
+{% do log("gold_flight_stats_by_country last updated from silver at: " ~ run_started_at, info=True) %}

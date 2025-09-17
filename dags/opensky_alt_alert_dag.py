@@ -9,6 +9,8 @@ import sys
 # Allow Airflow to import from outside the dags folder
 sys.path.append("/opt/airflow/scripts/opensky")
 
+pid_path = "/opt/airflow/data/alerting.pid"
+
 with DAG(
     'opensky_altitude_alert_dag',
     schedule_interval=None,
@@ -16,15 +18,10 @@ with DAG(
     catchup=False,
     tags=['opensky']
 ) as dag:
-    
-    # start_watching = BashOperator(
-    #     task_id='start_watching',
-    #     bash_command='nohup python3 /opt/airflow/scripts/opensky/bash_altitude_alert.py > /dev/null 2>&1 &'
-    # )
 
     start_watching = BashOperator(
     task_id='start_watching',
-    bash_command='python3 /opt/airflow/scripts/opensky/bash_altitude_alert.py'
+    bash_command='nohup python3 /opt/airflow/scripts/opensky/bash_altitude_alert.py > /opt/airflow/data/logs/altitude_alert.log 2>&1 &' 
     )
 
     wait_8_hours = BashOperator(
@@ -32,9 +29,17 @@ with DAG(
         bash_command='sleep 300'
     )
 
-    stop_watching = BashOperator(
-        task_id='stop_streaming',
-        bash_command='kill -9 $(cat /tmp/altitude_alert.pid) && rm /tmp/altitude_alert.pid || echo "No process to kill"'
-    )
+    kill_alerting_task = BashOperator(
+    task_id='kill_altitude_alert',
+    bash_command='''
+    if [ -f /opt/airflow/data/alerting.pid ]; then
+        kill -9 $(cat /opt/airflow/data/alerting.pid) || true
+        rm /opt/airflow/data/alerting.pid || true
+        echo "Stopped alerting process."
+    else
+        echo "No alerting process to kill.";
+    fi''',
+    dag=dag
+)
 
-    start_watching >> wait_8_hours >> stop_watching
+    start_watching >> wait_8_hours >> kill_alerting_task

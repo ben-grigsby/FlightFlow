@@ -1,0 +1,18 @@
+[2025-09-17T06:26:31.268+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: opensky_data_pipeline_dag.run_bronze_load manual__2025-09-17T06:26:15.071251+00:00 [queued]>
+[2025-09-17T06:26:31.270+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: opensky_data_pipeline_dag.run_bronze_load manual__2025-09-17T06:26:15.071251+00:00 [queued]>
+[2025-09-17T06:26:31.270+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 1
+[2025-09-17T06:26:31.274+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): run_bronze_load> on 2025-09-17 06:26:15.071251+00:00
+[2025-09-17T06:26:31.276+0000] {standard_task_runner.py:60} INFO - Started process 8414 to run task
+[2025-09-17T06:26:31.278+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'opensky_data_pipeline_dag', 'run_bronze_load', 'manual__2025-09-17T06:26:15.071251+00:00', '--job-id', '44', '--raw', '--subdir', 'DAGS_FOLDER/opensky_data_pipeline_dag.py', '--cfg-path', '/tmp/tmpgmmyurl6']
+[2025-09-17T06:26:31.279+0000] {standard_task_runner.py:88} INFO - Job 44: Subtask run_bronze_load
+[2025-09-17T06:26:31.296+0000] {task_command.py:423} INFO - Running <TaskInstance: opensky_data_pipeline_dag.run_bronze_load manual__2025-09-17T06:26:15.071251+00:00 [running]> on host 769d9d26935d
+[2025-09-17T06:26:31.401+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='opensky_data_pipeline_dag' AIRFLOW_CTX_TASK_ID='run_bronze_load' AIRFLOW_CTX_EXECUTION_DATE='2025-09-17T06:26:15.071251+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-09-17T06:26:15.071251+00:00'
+[2025-09-17T06:26:31.402+0000] {bronze_load.py:40} INFO - Starting bronze load process...
+[2025-09-17T06:26:31.421+0000] {bronze_load.py:49} INFO - [BRONZE] Loaded 57299 rows from Parquet: /opt/airflow/scripts/opensky/../../data/kafka_parquet/opensky_batch_20250917_062630.parquet
+[2025-09-17T06:26:31.421+0000] {bronze_load.py:50} INFO - [BRONZE] Beginning to extract and load data into bronze_info table.
+[2025-09-17T06:26:31.426+0000] {base.py:83} INFO - Using connection ID 'postgres_default' for task execution.
+[2025-09-17T06:26:37.425+0000] {bronze_load.py:95} INFO - [BRONZE] Completed inserting all rows into opensky.bronze_ddl.
+[2025-09-17T06:26:37.428+0000] {python.py:201} INFO - Done. Returned value was: None
+[2025-09-17T06:26:37.432+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=opensky_data_pipeline_dag, task_id=run_bronze_load, execution_date=20250917T062615, start_date=20250917T062631, end_date=20250917T062637
+[2025-09-17T06:26:37.449+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-09-17T06:26:37.519+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

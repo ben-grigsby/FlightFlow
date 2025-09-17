@@ -19,7 +19,7 @@ from bronze.opensky.bronze_load import insert_into_bronze_ddl
 
 with DAG(
     'opensky_data_pipeline_dag',
-    schedule_interval = '5-59/5 9-18 * * *',
+    schedule_interval = '*/1 * * * *', # '5-59/5 9-18 * * *',
     start_date=datetime(2023, 1, 1),
     catchup=False,
     tags=['opensky']
