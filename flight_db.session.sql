@@ -21,6 +21,6 @@
 
 -- SELECT * FROM opensky.bronze_info;
 
-SELECT DISTINCT silver_created_at FROM opensky.silver_main_table;
+SELECT * FROM opensky.silver_secondary_table LIMIT 10;
 
 SELECT * FROM opensky.gold_flight_stats_by_country;
