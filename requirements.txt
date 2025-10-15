@@ -1,12 +1,28 @@
-kafka-python
-requests
-psycopg2-binary
-pyspark
+# Core packages
 pandas
-apache-airflow==2.8.1 
-apache-airflow-providers-postgres
+requests
 python-dotenv
-math
+sqlalchemy
+tqdm
+pathlib
+scikit-learn
 
+# Kafka and streaming
+kafka-python
+pyspark
+pyarrow
+pyiceberg
 
+# PostgreSQL DB support
+psycopg2-binary
+
+# Streamlit dashboard
+streamlit
+
+# Airflow and Postgres provider
 --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.8.1/constraints-3.11.txt"
+apache-airflow==2.8.1
+apache-airflow-providers-postgres
+
+# Model Training
+xgboost>=2.0.0

@@ -120,7 +120,7 @@ def insert_into_bronze_ddl(ti, insert_query=bronze_insert):
                 flight_icao,
                 aircraft,
                 live,
-                info
+                json.dumps(info)
             ]
 
             cur.execute(insert_query, lst)

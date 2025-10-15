@@ -1,26 +1,20 @@
--- -- SELECT * FROM avstack.bronze_info
--- --     WHERE dept_airport = 'Kansai International';
+-- Tables
 
--- SELECT DISTINCT created_at FROM avstack.silver_arr_info;
--- SELECT DISTINCT created_at FROM avstack.silver_dept_info;
--- SELECT DISTINCT created_at FROM avstack.silver_flight_info;
+-- avstack.bronze_info
+-- avstack.silver_arr_info
+-- avstack.silver_dept_info
+-- avstack.silver_flight_info
+-- avstack.gold_dim_timezone_info
+-- avstack.gold_dim_airline_info
+-- avstack.gold_dim_flight_info
+-- avstack.gold_dim_arr_dept_table
+-- avstack.gold_fact_arrivals_table
+-- avstack.gold_fact_departures_table
 
--- SELECT DISTINCT created_at FROM avstack.gold_dim_timezone_info;
--- SELECT distinct created_at FROM avstack.gold_dim_airline_info;
--- SELECT distinct created_at FROM avstack.gold_dim_airport_info;
--- SELECT distinct created_at FROM avstack.gold_dim_flight_info;
--- SELECT distinct created_at FROM avstack.gold_fact_arr_dept_table;
--- SELECT distinct created_at FROM avstack.gold_fact_arrivals_table;
--- SELECT distinct created_at FROM avstack.gold_fact_departures_table;
+-- opensky.bronze_info
+-- opensky.silver_main_table
+-- opensky.silver_secondary_table
+-- opensky.gold_flight_ids
+-- opensky.gold_top_origin_countries
 
-
--- SELECT * FROM avstack.bronze_info;
-
-
--- SELECT * FROM avstack.gold_dim_airport_info;
-
--- SELECT * FROM opensky.bronze_info;
-
-SELECT * FROM opensky.silver_secondary_table LIMIT 10;
-
-SELECT * FROM opensky.gold_flight_stats_by_country;
+SELECT * FROM avstack.gold_dim_timezone_info
