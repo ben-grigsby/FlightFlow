@@ -1,6 +1,7 @@
 # etl/train_spark_model.py
 
 from pyspark.sql import SparkSession, functions as F
+from pyspark.sql.functions import col
 from pyspark.ml.feature import StringIndexer, OneHotEncoder, VectorAssembler
 from pyspark.ml import Pipeline
 from pyspark.ml.evaluation import RegressionEvaluator
@@ -28,3 +29,25 @@ df.printSchema()
 df.show(5)
 num_rows = df.count()
 print(f"Total rows: {num_rows}")
+
+
+feature_cols = [
+    "airline",
+    "dep_airport",
+    "arr_airport",
+    "dept_airport_delay",
+    "month",
+    "day"
+]
+
+target_col = "arr_delay"
+
+df = (
+    df
+    .withColumn("dept_airport_delay", col("dept_airport_delay").cast("double"))
+    .withColumn("arr_delay", col("arr_delay").cast("double"))
+)
+
+# Save cleaned numeric data back to disk
+df.write.mode("overwrite").parquet("data/model_features_cleaned/")
+print("Cleaned dataset saved to data/model_features_cleaned/")

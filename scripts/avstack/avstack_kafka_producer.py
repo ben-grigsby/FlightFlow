@@ -2,12 +2,12 @@
 
 from dotenv import load_dotenv
 from kafka import KafkaProducer
+from datetime import datetime, timedelta
 
 import sys
 import os
 import json
 import requests
-import datetime
 import time
 
 load_dotenv(dotenv_path="/opt/airflow/.env")
@@ -117,33 +117,46 @@ def run_kafka_producer_historic(start_date="2025-01-16", end_date="2025-02-01", 
 
 
 def run_kafka_producer_future():
+
     API_KEY = os.getenv("AVSTACK_API_KEY")
 
     producer = KafkaProducer(
         bootstrap_servers="kafka:9092",
-        value_serializer=lambda v: json.dumps(v).encode("utf-8")
+        value_serializer=lambda v: json.dumps(v).encode("utf-8"),
+        max_request_size=20_000_000  # for larger payloads
     )
 
-    url = "https://api.aviationstack.com/v1/flights"
+    url = "https://api.aviationstack.com/v1/flightsFuture"
+    future_date = (datetime.utcnow().date() + timedelta(days=8)).isoformat()
 
     params = {
         "access_key": API_KEY,
-        "iataCode": "JFK",         # Airport code
-        "type": "departure",       # or "arrival"
-        "date": "2025-09-30"       # Future date
+        "iataCode": "JFK",
+        "type": "arrival",
+        "date": "2025-10-27"
     }
 
-    print("📡 Sending request:", url, params)
+    print(params)
+
+    print(f"Fetching future flights for {future_date} from {url}")
     response = requests.get(url, params=params)
     print("Status Code:", response.status_code)
-    print("Response preview:", response.text[:400])  # show first 400 chars
+
+    if response.status_code != 200:
+        print("Error fetching data:", response.text[:300])
+        return
 
     data = response.json()
+    flight_data = data.get("data", [])
 
-    producer.send("aviation_flight_data_future", value=data)
+    if not flight_data:
+        print("No flights returned for that date.")
+        return
+
+    producer.send("aviation_flight_data_future", value=flight_data)
     producer.flush()
-    print(f"✅ Sent {len(data.get('data', []))} future flights to Kafka")
+    print(f"Sent {len(flight_data)} future flights to Kafka.")
     
 
 if __name__ == "__main__":
-    run_kafka_producer_historic()
+    run_kafka_producer_future()

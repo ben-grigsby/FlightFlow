@@ -22,22 +22,6 @@ df = spark.sql("""
         airline_name AS airline,
         dept_airport_iata AS dep_airport,
         arr_airport_iata AS arr_airport,
-        dept_airport_delay AS dep_delay,
-        arr_delay,
-        flight_status,
-        month,
-        day
-    FROM local.flights
-    WHERE arr_delay IS NOT NULL
-""")
-
-
-df = spark.sql("""
-    SELECT
-        flight_date,
-        airline_name AS airline,
-        dept_airport_iata AS dep_airport,
-        arr_airport_iata AS arr_airport,
         dept_timezone,
         arr_timezone,
         dept_scheduled,
@@ -52,3 +36,4 @@ df = spark.sql("""
 """).sample(fraction=0.015, seed=42)
 
 df.write.mode("overwrite").parquet("data/model_features/")
+df.show()

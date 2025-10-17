@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.StringIndexerModel","timestamp":1760672257247,"sparkVersion":"3.5.0","uid":"StringIndexer_4c172a70c48d","paramMap":{"outputCol":"dep_airport_idx","inputCol":"dep_airport","handleInvalid":"keep"},"defaultParamMap":{"outputCol":"StringIndexer_4c172a70c48d__output","stringOrderType":"frequencyDesc","handleInvalid":"error"}}
