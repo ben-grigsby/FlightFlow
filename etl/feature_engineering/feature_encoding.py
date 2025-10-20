@@ -54,7 +54,7 @@ encoded_model = pipeline.fit(df)
 encoded_df = encoded_model.transform(df)
 
 # ---------------------- Save the Fitted Pipeline ----------------------
-encoded_model.write().overwrite().save("models/encoding_pipeline")
+encoded_model.write().overwrite().save("data/models/encoding_pipeline")
 print("Encoding pipeline saved to models/encoding_pipeline")
 
 # ---------------------- Save Encoded Data ----------------------

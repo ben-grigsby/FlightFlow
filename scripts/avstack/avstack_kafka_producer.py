@@ -49,7 +49,7 @@ def run_kafka_producer():
 
 
 
-def run_kafka_producer_historic(start_date="2025-01-16", end_date="2025-02-01", limit=1000, daily_cap=90000):
+def run_kafka_producer_historic(start_date="2025-09-25", end_date="2025-10-20", limit=1000, daily_cap=90000):
     API_KEY = os.getenv("AVSTACK_API_KEY")
 
     producer = KafkaProducer(
@@ -57,8 +57,8 @@ def run_kafka_producer_historic(start_date="2025-01-16", end_date="2025-02-01", 
         value_serializer=lambda v: json.dumps(v).encode("utf-8")
     )
 
-    current = datetime.datetime.strptime(start_date, "%Y-%m-%d").date()
-    end = datetime.datetime.strptime(end_date, "%Y-%m-%d").date()
+    current = datetime.strptime(start_date, "%Y-%m-%d").date()
+    end = datetime.strptime(end_date, "%Y-%m-%d").date()
 
     while current <= end:
         url = "http://api.aviationstack.com/v1/flights"
@@ -109,14 +109,14 @@ def run_kafka_producer_historic(start_date="2025-01-16", end_date="2025-02-01", 
                 
 
         # move to next day
-        current += datetime.timedelta(days=1)
+        current += timedelta(days=1)
         time.sleep(60)
 
     print("🎉 Completed producing messages for range")
 
 
 
-def run_kafka_producer_future():
+def run_kafka_producer_future(max_offset=10, airport='JFK'):
 
     API_KEY = os.getenv("AVSTACK_API_KEY")
 
@@ -129,34 +129,47 @@ def run_kafka_producer_future():
     url = "https://api.aviationstack.com/v1/flightsFuture"
     future_date = (datetime.utcnow().date() + timedelta(days=8)).isoformat()
 
-    params = {
-        "access_key": API_KEY,
-        "iataCode": "JFK",
-        "type": "arrival",
-        "date": "2025-10-27"
-    }
+    offset = 0
+    limit = 1000
 
-    print(params)
+    while offset < 3:
+        
+        print(f"Preparing API call for off {airport} with a {limit} limit and {offset} offset.")
 
-    print(f"Fetching future flights for {future_date} from {url}")
-    response = requests.get(url, params=params)
-    print("Status Code:", response.status_code)
+        params = {
+            "access_key": API_KEY,
+            "iataCode": airport,
+            "type": "arrival",
+            "date": future_date,
+            'limit': limit,
+            'offset': offset
+        }
 
-    if response.status_code != 200:
-        print("Error fetching data:", response.text[:300])
-        return
+        for key, value in params.items():
+            if key != 'access_key':
+                print(f"{key}: {value}")
 
-    data = response.json()
-    flight_data = data.get("data", [])
+        print(f"Fetching future flights for {future_date} from {url}")
+        response = requests.get(url, params=params)
+        print("Status Code:", response.status_code)
 
-    if not flight_data:
-        print("No flights returned for that date.")
-        return
+        if response.status_code != 200:
+            print("Error fetching data:", response.text[:300])
+            return
 
-    producer.send("aviation_flight_data_future", value=flight_data)
-    producer.flush()
-    print(f"Sent {len(flight_data)} future flights to Kafka.")
+        data = response.json()
+        flight_data = data.get("data", [])
+
+        if not flight_data:
+            print("No flights returned for that date.")
+            return
+
+        producer.send("aviation_flight_data_future", value=flight_data)
+        producer.flush()
+        print(f"Sent {len(flight_data)} future flights to Kafka.")
+        offset += 1
+        time.sleep(60)
     
 
 if __name__ == "__main__":
-    run_kafka_producer_future()
+    run_kafka_producer_historic()

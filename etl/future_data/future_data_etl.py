@@ -1,40 +1,47 @@
-# etl/future_data_etl.py
+# etl/future_data/future_data_etl.py
 
-from pyspark.sql import SparkSession
-from pyspark.sql import Row
-from datetime import datetime, timedelta
-
-import json 
 import os
+import json
+from datetime import datetime, timedelta
+from pyspark.sql import SparkSession, Row
 
-# ------------------- Spark session -------------------
+# ---------------------- Path Setup ----------------------
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))  # goes up 1 level to project root from /etl/
+DATA_DIR = os.path.join(BASE_DIR, "data")
 
+KAFKA_LOGS_DIR = os.path.join(DATA_DIR, "kafka_logs/avstack/future/")
+OUTPUT_PATH = os.path.join(DATA_DIR, "future_parquet/")
+
+# ---------------------- Spark Session ----------------------
 spark = (
     SparkSession.builder
     .appName("FutureFlightETL")
     .config("spark.driver.memory", "6g")
     .getOrCreate()
 )
+spark.sparkContext.setLogLevel("WARN")
 
-# Path where consumer saves JSON files
-json_dir = "data/kafka_logs/avstack/future/"
-
+# ---------------------- Prepare Date Info ----------------------
 future_date = (datetime.utcnow().date() + timedelta(days=8))
 month = future_date.month
 day = future_date.day
 
+# ---------------------- Extract JSON Data ----------------------
 rows = []
-for file in os.listdir(json_dir):
+for file in os.listdir(KAFKA_LOGS_DIR):
     if not file.endswith(".json"):
         continue
-    with open(os.path.join(json_dir, file)) as f:
+
+    with open(os.path.join(KAFKA_LOGS_DIR, file)) as f:
         flights = json.load(f)
+
         for flight in flights:
             dep = flight.get("departure", {})
             arr = flight.get("arrival", {})
             airline = flight.get("airline", {})
             flight_info = flight.get("flight", {})
 
+            # Extract scheduled times
             dep_time_str = dep.get("scheduledTime")
             arr_time_str = arr.get("scheduledTime")
 
@@ -60,13 +67,13 @@ for file in os.listdir(json_dir):
                 day = day
             ))
 
-# Convert to Spark DF
+# ---------------------- Convert to Spark DataFrame ----------------------
 df = spark.createDataFrame(rows)
-
-df.show(5)
+df.show(5, truncate=False)
 print(f"Total parsed flights: {df.count()}")
 
-# Save to parquet for inference
-output_path = "data/future_parquet/"
-df.write.mode("overwrite").parquet(output_path)
-print(f"Saved future flight data to {output_path}")
+# ---------------------- Save to Parquet for Inference ----------------------
+df.write.mode("overwrite").parquet(OUTPUT_PATH)
+print(f"Saved future flight data to {OUTPUT_PATH}")
+
+spark.stop()

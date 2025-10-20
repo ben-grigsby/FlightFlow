@@ -1,9 +1,21 @@
 # scripts/modeling/predict_future.py
 
+import os
 from pyspark.sql import SparkSession
 from pyspark.ml.linalg import VectorUDT
 from pyspark.sql.functions import col, monotonically_increasing_id, round, floor, lpad, concat_ws
 import xgboost.spark as sxgb
+
+
+# ---------------------- Path Setup ----------------------
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+
+MODEL_PATH = os.path.join(DATA_DIR, "models/xgboost_flight_delay")
+FUTURE_FEATURES_PATH = os.path.join(DATA_DIR, "model_encoded_future/")
+FUTURE_RAW_PATH = os.path.join(DATA_DIR, "future_parquet/")
+OUTPUT_PATH = os.path.join(DATA_DIR, "predictions/future_flights/")
+
 
 # ---------------------- Spark Session ----------------------
 spark = (
@@ -14,12 +26,6 @@ spark = (
     .getOrCreate()
 )
 spark.sparkContext.setLogLevel("WARN")
-
-# ---------------------- Paths ----------------------
-MODEL_PATH = "data/models/xgboost_flight_delay"
-FUTURE_FEATURES_PATH = "data/model_encoded_future/"
-FUTURE_RAW_PATH = "data/future_parquet/"
-OUTPUT_PATH = "data/predictions/future_flights/"
 
 # ---------------------- Load Trained XGBoost Model ----------------------
 print(f"Loading trained regression model from: {MODEL_PATH}")
