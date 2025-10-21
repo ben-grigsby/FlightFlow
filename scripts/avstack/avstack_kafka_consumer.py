@@ -138,4 +138,4 @@ def run_future_kafka_consumer(max_idle_seconds=30):
 
 
 if __name__ == '__main__':
-    run_future_kafka_consumer()
+    run_kafka_consumer()

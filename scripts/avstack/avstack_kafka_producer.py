@@ -49,7 +49,7 @@ def run_kafka_producer():
 
 
 
-def run_kafka_producer_historic(start_date="2025-09-25", end_date="2025-10-20", limit=1000, daily_cap=90000):
+def run_kafka_producer_historic(start_date="2025-10-11", end_date="2025-10-20", limit=1000, daily_cap=90000):
     API_KEY = os.getenv("AVSTACK_API_KEY")
 
     producer = KafkaProducer(

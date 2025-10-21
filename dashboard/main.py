@@ -2,39 +2,47 @@
 
 import streamlit as st
 import altair as alt
-import pandas as pd
-
-
-from datetime import datetime
-
-from configs.configs import (
-    timezones
-)
-
 from load_data import (
-    get_gold_table,
-    get_top_origin_countries
+    ib_busiest_cities_24h,
+    ib_preview_table
 )
 
-from functions.timezone_clocks import (
-    top_clock
-)
+# ------------------------------------------------------
+# Dashboard Title
+# ------------------------------------------------------
+st.set_page_config(page_title="Flight Dashboard", layout="wide")
+st.title("🌍 Top 10 Busiest Origin Countries (Past 24 Hours)")
 
-top_clock()
+# ------------------------------------------------------
+# Load data (from Iceberg query)
+# ------------------------------------------------------
+with st.spinner("Loading latest flight data..."):
+    df = ib_busiest_cities_24h()
 
-st.title("Top 10 Countries with Highest Flight")
-df = get_top_origin_countries()
+if df.empty:
+    st.warning("No data available for the past 24 hours.")
+else:
+    # --------------------------------------------------
+    # Display table and chart
+    # --------------------------------------------------
+    st.subheader("Flight Counts by Country")
+    st.dataframe(df, use_container_width=True)
+
+    # Altair chart
+    bar_chart = (
+        alt.Chart(df)
+        .mark_bar()
+        .encode(
+            x=alt.X("flight_count:Q", title="Number of Flights"),
+            y=alt.Y("city:N", sort="-x", title="City"),
+            color=alt.Color("city:N", legend=None),
+            tooltip=["city", "flight_count"]
+        )
+        .properties(width=700, height=400)
+    )
+
+    st.altair_chart(bar_chart, use_container_width=True)
 
 
-bar_chart = alt.Chart(df).mark_bar().encode(
-    x=alt.X('flight_count:Q', title='Flight Count'),
-    y=alt.Y('origin_country:N', sort='-x', title='Origin Country'),
-    color=alt.Color('origin_country:N', legend=None),
-    tooltip=['origin_country', 'flight_count']
-).properties(
-    width=600,
-    height=400,
-    title='Top 10 Origin Countries by Flight Count'
-)
-
-st.altair_chart(bar_chart)
+df_2 = ib_preview_table()
+st.dataframe(df_2, use_container_width=True)

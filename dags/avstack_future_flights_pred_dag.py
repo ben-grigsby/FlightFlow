@@ -15,8 +15,8 @@ from avstack.avstack_kafka_producer import run_kafka_producer_future
 from avstack.avstack_kafka_consumer import run_future_kafka_consumer
 
 with DAG(
-    'avstack_acquire_future_data',
-    schedule_interval='0 2 * * *',
+    'avstack_future_flight_delay_prediction',
+    schedule_interval='0 3 * * *',
     start_date=datetime(2025, 10, 20),
     catchup=False,
     tags=['avstack_future']

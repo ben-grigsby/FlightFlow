@@ -17,7 +17,7 @@ def get_current_time(timezone_str):
 
 
 def top_clock(loc1="New York", loc2="London", loc3="Tokyo"):
-    st.markdown("## Local Times at Major Airport Locations")
+    st.markdown("<h2 style='text-align: center;'>Local Times</h2>", unsafe_allow_html=True)
 
     # Use 5 columns: left spacer, clock1, middle spacer, clock2, right clock
     col1, spacer1, col2, spacer2, col3 = st.columns([1, 0.2, 1, 0.2, 1])

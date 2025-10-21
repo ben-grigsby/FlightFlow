@@ -1,7 +1,8 @@
 # dags/avstack_daily_pull_dag.py
 
 from airflow import DAG
-from airflow.operators.python import PythonOperator, BashOperator
+from airflow.operators.python import PythonOperator
+from airflow.operators.bash import BashOperator
 from datetime import datetime
 
 import sys
@@ -24,7 +25,7 @@ with DAG(
 
     kafka_producer = PythonOperator(
         task_id='run_kafka_producer',
-        pythoncallable=run_kafka_producer_historic,
+        python_callable=run_kafka_producer_historic,
         op_kwargs={
             "start_date": datetime.now().strftime("%Y-%m-%d"),
             "end_date": datetime.now().strftime("%Y-%m-%d"),
@@ -35,12 +36,12 @@ with DAG(
 
     kafka_consumer = PythonOperator(
         task_id='run_kafka_consumer',
-        pythoncallable=run_kafka_consumer
+        python_callable=run_kafka_consumer
     )
 
     json_to_parquet = PythonOperator(
         task_id='process_json_to_parquet',
-        pythoncallable=process_json_files
+        python_callable=process_json_files
     )
 
     update_iceberg = BashOperator(
@@ -49,5 +50,9 @@ with DAG(
     )
 
     delete_json_files = BashOperator(
-        # COMPLETE THE BASHOPERATOR CODE FOR THIS SECTION!!
+        task_id='delete_json_files',
+        bash_command='rm -f /opt/airflow/data/kafka_logs/avstack/future/*.json',
+        trigger_rule='all_success'
     )
+
+    kafka_producer >> kafka_consumer >> json_to_parquet >> update_iceberg >> delete_json_files

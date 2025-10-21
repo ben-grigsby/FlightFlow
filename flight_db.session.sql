@@ -17,4 +17,4 @@
 -- opensky.gold_flight_ids
 -- opensky.gold_top_origin_countries
 
-SELECT * FROM avstack.gold_dim_timezone_info
+SELECT * FROM opensky.silver_secondary_table
