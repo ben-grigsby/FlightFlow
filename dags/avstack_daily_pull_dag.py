@@ -3,7 +3,7 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import sys
 
@@ -26,12 +26,15 @@ with DAG(
     kafka_producer = PythonOperator(
         task_id='run_kafka_producer',
         python_callable=run_kafka_producer_historic,
-        op_kwargs={
-            "start_date": datetime.now().strftime("%Y-%m-%d"),
-            "end_date": datetime.now().strftime("%Y-%m-%d"),
+        op_kwargs={  
+            "start_date": (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d"),
+            "end_date": (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d"),
             "limit": 1000,
             "daily_cap": 90000
-        }
+        },
+        retries=3,
+        retry_delay=timedelta(minutes=2),
+        retry_exponential_backoff=True
     )
 
     kafka_consumer = PythonOperator(
@@ -46,13 +49,12 @@ with DAG(
 
     update_iceberg = BashOperator(
         task_id='update_iceberg_table',
-        bash_command="python3 /opt/airflow/etl/update_iceberg_table.py"
+        bash_command="python3 /opt/airflow/etl/iceberg/update_iceberg_table.py"
     )
 
-    delete_json_files = BashOperator(
-        task_id='delete_json_files',
-        bash_command='rm -f /opt/airflow/data/kafka_logs/avstack/future/*.json',
-        trigger_rule='all_success'
-    )
+    # delete_json = BashOperator(
+    # task_id="delete_json_files",
+    # bash_command="python3 /Users/bengrigsby/Desktop/Jobs/flightweather/etl/delete_json_files.py",
+    # )
 
-    kafka_producer >> kafka_consumer >> json_to_parquet >> update_iceberg >> delete_json_files
+    kafka_producer >> kafka_consumer >> json_to_parquet >> update_iceberg # >> delete_json

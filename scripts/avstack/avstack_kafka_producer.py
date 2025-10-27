@@ -54,7 +54,8 @@ def run_kafka_producer_historic(start_date="2025-10-11", end_date="2025-10-20", 
 
     producer = KafkaProducer(
         bootstrap_servers="kafka:9092",
-        value_serializer=lambda v: json.dumps(v).encode("utf-8")
+        value_serializer=lambda v: json.dumps(v).encode("utf-8"),
+        max_request_size=20000000
     )
 
     current = datetime.strptime(start_date, "%Y-%m-%d").date()

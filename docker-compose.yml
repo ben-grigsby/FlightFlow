@@ -35,6 +35,7 @@ services:
     volumes:
       - ./jars:/app/jars
       - .:/app
+      - ./data:/app/data
     working_dir: /app
     command: tail -f /dev/null
     depends_on:

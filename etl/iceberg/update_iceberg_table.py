@@ -2,13 +2,28 @@
 
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import lit
+from iceberg_init import iceberg_init
 import os
+
+# ------------------ Check if table exists, create if not ------------------
+iceberg_init()
 
 # ------------------ Path Setup ------------------
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))  # go up 3 levels from this file
-DATA_DIR = os.path.join(BASE_DIR, "data")
+DATA_DIR = "/opt/airflow/data"
 PARQUET_ROOT = os.path.join(DATA_DIR, "iceberg_parquet")
 WAREHOUSE_PATH = os.path.join(DATA_DIR, "iceberg_warehouse")
+
+print("=== DEBUG PATH INFO ===")
+print("Current working directory:", os.getcwd())
+print("Absolute path to this file:", os.path.abspath(__file__))
+print("Listing of current directory:", os.listdir(os.getcwd()))
+print("Expected warehouse path:", os.path.join(os.getcwd(), "data/iceberg_warehouse"))
+print("Environment variable PWD:", os.getenv("PWD"))
+print("========================")
+
+print("Configured WAREHOUSE_PATH:", WAREHOUSE_PATH)
+print("Exists?", os.path.exists(WAREHOUSE_PATH))
 
 # ------------------ Initialize Spark ------------------
 spark = (
