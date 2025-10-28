@@ -25,4 +25,4 @@ apache-airflow==2.8.1
 apache-airflow-providers-postgres
 
 # Model Training
-xgboost>=2.0.0
+xgboost==2.0.3

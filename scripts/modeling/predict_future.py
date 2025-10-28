@@ -5,17 +5,28 @@ from pyspark.sql import SparkSession
 from pyspark.ml.linalg import VectorUDT
 from pyspark.sql.functions import col, monotonically_increasing_id, round, floor, lpad, concat_ws
 import xgboost.spark as sxgb
+from datetime import datetime, timedelta
 
+# ---------------------- Determine Correct Data Path ----------------------
+if os.path.exists("/opt/airflow/data"):
+    DATA_DIR = "/opt/airflow/data"
+else:
+    DATA_DIR = "/app/data"
 
-# ---------------------- Path Setup ----------------------
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-DATA_DIR = os.path.join(BASE_DIR, "data")
+future_str = (datetime.now() + timedelta(days=8)).strftime("%Y-%m-%d")
 
 MODEL_PATH = os.path.join(DATA_DIR, "models/xgboost_flight_delay")
-FUTURE_FEATURES_PATH = os.path.join(DATA_DIR, "model_encoded_future/")
-FUTURE_RAW_PATH = os.path.join(DATA_DIR, "future_parquet/")
-OUTPUT_PATH = os.path.join(DATA_DIR, "predictions/future_flights/")
+FUTURE_FEATURES_PATH = os.path.join(DATA_DIR, "model_encoded_future")
+FUTURE_RAW_PATH = os.path.join(DATA_DIR, "future_parquet")
+OUTPUT_PATH = os.path.join(DATA_DIR, f"predictions/future_flights/date={future_str}")
 
+print(f"\n================== FUTURE PREDICTION DEBUG ==================")
+print(f"DATA_DIR:              {DATA_DIR}")
+print(f"MODEL_PATH:            {MODEL_PATH}")
+print(f"FUTURE_FEATURES_PATH:  {FUTURE_FEATURES_PATH}")
+print(f"FUTURE_RAW_PATH:       {FUTURE_RAW_PATH}")
+print(f"OUTPUT_PATH:           {OUTPUT_PATH}")
+print("==============================================================\n")
 
 # ---------------------- Spark Session ----------------------
 spark = (
@@ -32,6 +43,7 @@ print(f"Loading trained regression model from: {MODEL_PATH}")
 xgb_model = sxgb.SparkXGBRegressorModel.load(MODEL_PATH)
 
 # ---------------------- Load Encoded Future Data ----------------------
+print(f"Loading encoded features from: {FUTURE_FEATURES_PATH}")
 encoded_df = spark.read.parquet(FUTURE_FEATURES_PATH)
 print(f"Loaded encoded future data: {encoded_df.count()} rows")
 
@@ -43,6 +55,7 @@ print("Running predictions on future flights...")
 pred_df = xgb_model.transform(encoded_df)
 
 # ---------------------- Load Original Future Flight Info ----------------------
+print(f"Loading raw flight info from: {FUTURE_RAW_PATH}")
 raw_future_df = spark.read.parquet(FUTURE_RAW_PATH)
 print(f"Loaded raw flight info: {raw_future_df.count()} rows")
 
@@ -69,13 +82,16 @@ joined = joined.withColumn(
 )
 
 # ---------------------- Save Predictions ----------------------
+print(f"Saving predictions to: {OUTPUT_PATH}")
 joined.write.mode("overwrite").parquet(OUTPUT_PATH)
-print(f"Predictions saved to: {OUTPUT_PATH}")
+print(f"Predictions saved successfully to {OUTPUT_PATH}")
 
 # ---------------------- Show Sample Output ----------------------
+print("\nSample predictions:")
 joined.select(
     "airline", "dep_airport", "arr_airport", "dep_hour", "arr_hour",
     "predicted_arr_delay_mins", "predicted_delay_hhmm"
 ).orderBy(col("predicted_arr_delay").desc()).show(10, truncate=False)
 
 spark.stop()
+print("Future prediction pipeline finished successfully.")
