@@ -47,75 +47,43 @@ It combines stream-style ingestion, batch ETL, Airflow orchestration, and machin
 
 ## Folder Structure
 
+```
 HermesFlow/
-
 ├── dags/                            # Airflow DAG definitions
-
 │   ├── avstack_daily_data_dag.py    # Historical flight data pipeline
-
 │   ├── avstack_future_flight_delay_prediction_dag.py  # Future prediction pipeline
-
 │
-
 ├── scripts/                         # Python scripts for ingestion, ML, and utils
-
 │   ├── avstack/
-
 │   │   ├── avstack_kafka_producer.py
-
 │   │   ├── avstack_kafka_consumer.py
-
 │   │   └── utils.py
-
 │   │
-
 │   └── modeling/
-
 │       ├── train_model.py           # Retrains weekly XGBoost model
-
 │       ├── predict_future.py        # Predicts future flight delays
-
 │       └── email_predictions.py     # (Optional) Sends predictions via email
-
 │
-
 ├── etl/                             # Modular ETL scripts for each layer
-
 │   ├── future_data/
-
 │   │   ├── future_data_etl.py
-
 │   │   └── future_data_encoding.py
-
 │   └── daily_data/
-
 │       ├── daily_data_etl.py
-
 │       └── daily_data_encoding.py
-
 │
-
 ├── data/                            # Output data directory (mounted volume)
-
 │   ├── bronze/                      # Raw JSON from AviationStack
-
 │   ├── silver/                      # Cleaned and structured parquet files
-
 │   ├── gold/                        # Final Iceberg tables and predictions
-
 │   ├── models/                      # Trained ML models
-
 │   └── predictions_excel/           # Excel exports of delay forecasts
-
 │
-
 ├── docker-compose.yml               # Airflow, Kafka, Postgres setup
-
 ├── requirements.txt                 # Python dependencies
-
 ├── README.md                        # This file
-
 └── .env                             # API keys and config variables
+```
 
 ---
 
