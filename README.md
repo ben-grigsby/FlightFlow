@@ -102,6 +102,7 @@ HermesFlow/
 ├── docker-compose.yml               # Airflow, Kafka, Postgres setup
 ├── requirements.txt                 # Python dependencies
 ├── README.md                        # This file
+├── PROJECT_REFLECTION.md            # Deep reflection about tool choices, motivations, and other insights
 └── .env                             # API keys and config variables
 ```
 
