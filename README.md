@@ -2,7 +2,20 @@
 
 **End-to-End Data Engineering & ML Pipeline for Global Flight Data**
 
+---
+
+## Purpose
+
+HermesFlow is designed to help **airlines and airports** organize and analyze global flight information efficiently.  
+In particular, it focuses on **JFK Airport**, where it predicts **arrival delays** for incoming flights up to **eight days in advance**.  
+Flight data is retrieved from the **AviationStack API**, which allows access to schedules up to **eight days in the future** — the earliest window available for forecasting.  
+
+This capability is critical for **resource planning, gate allocation, and passenger communication**, making the system not just a technical showcase but a **practical decision-support tool** for aviation operations.
+
+---
+
 HermesFlow is a full-scale data engineering project that continuously ingests and processes real-world flight data using the AviationStack API.  
+
 It combines stream-style ingestion, batch ETL, Airflow orchestration, and machine learning prediction to forecast future flight delays — all organized within a modern Medallion Architecture (Bronze → Silver → Gold).
 
 ---
@@ -23,12 +36,16 @@ It combines stream-style ingestion, batch ETL, Airflow orchestration, and machin
 
 ## Features
 
+- **Kafka-Based Data Ingestion**:  
+  - AviationStack flight data (historical and future) is streamed into Kafka topics.  
+  - Kafka acts as a resilient buffer, decoupling data ingestion from processing.  
+
 - **Dual Pipelines**:  
   - **Historical Flights DAG** — Pulls previous day’s flight data and stores it in an Apache Iceberg table.  
   - **Future Flights DAG** — Fetches scheduled flights 8 days ahead and predicts their expected delays using an XGBoost model.
 
 - **ETL Pipeline**:  
-  - Raw JSON → Parquet (Bronze) → Cleaned (Silver) → Iceberg & Predictions (Gold).  
+  - Raw JSON (Bronze) → Cleaned Parquet (Silver) → Iceberg & Predictions (Gold).  
 
 - **ML Integration**:  
   - Weekly retraining on historical data with PySpark + XGBoost.  
@@ -89,27 +106,34 @@ HermesFlow/
 
 ## Core Components
 
-### 1. Daily Historical Flight Pipeline
+### 1. Kafka Streaming Backbone
+- Kafka handles **real-time ingestion and buffering** of AviationStack data.  
+- The **producer** (`avstack_kafka_producer.py`) fetches API data and publishes JSON payloads into a Kafka topic which begins the **Bronze layer**.  
+- The **consumer** (`avstack_kafka_consumer.py`) reads from that topic, writing structured messages to end the **Bronze layer**.  
+- This setup provides durability, retry handling, and message-level fault tolerance.
+
+
+### 2. Daily Historical Flight Pipeline
 - Pulls data from the previous day using the AviationStack API.  
 - Converts JSON → Parquet → Iceberg format.  
 - Used for analytics, model retraining, and long-term storage.  
 
-### 2. Future Flight Delay Prediction Pipeline
-- Fetches flight data 8 days ahead using AviationStack.  
+### 3. Future Flight Delay Prediction Pipeline
+- Fetches flight data **up to 8 days in advance** using the AviationStack API - the **earliest avialable future window** supported by their service.
 - Applies a trained XGBoost regression model to predict arrival delays.  
 - Outputs both Parquet (for reprocessing) and Excel files (for analysis).  
 
-### 3. Weekly Model Retraining
+### 4. Weekly Model Retraining
 - Historical Iceberg data is aggregated and used to retrain the XGBoost model weekly.  
 - Updated model replaces the previous version and is used by the next week’s prediction pipeline.
 
-### 4. Airflow DAG Orchestration
+### 5. Airflow DAG Orchestration
 - Manages dependencies across:
   - Data ingestion  
   - Data transformation  
   - Feature encoding  
   - Model prediction  
-  - Optional email dispatch  
+  - **Optional** email dispatch  
 - Includes automatic retries and logging for fault tolerance.
 
 ---
@@ -118,7 +142,7 @@ HermesFlow/
 
 | Layer | Description | Tools |
 |-------|--------------|--------|
-| **Bronze** | Raw JSON ingestion from AviationStack API. | Python, Requests |
+| **Bronze** | Raw JSON ingestion from AviationStack API. | Python, Kafka |
 | **Silver** | Data cleaning, schema alignment, and type casting. | PySpark |
 | **Gold** | Final Iceberg tables and ML-ready Parquet datasets. | Iceberg, PySpark, Parquet |
 
@@ -167,23 +191,24 @@ These DAGs are designed to complement each other — the **daily pipelines** ens
 ## 1. Daily Historical Flight Data DAG (`avstack_daily_data_dag`)
 
 ### **Purpose**
-Fetches and processes flight data from the previous day (`T-1`) using the AviationStack API.  
-The data undergoes a full ETL cycle — from raw JSON ingestion to Iceberg table storage — forming the foundation for retraining and analysis.
+
+Consumes and processes flight data from the previous day (T-1) via Kafka consumer streams.
+Performs the complete ETL cycle and stores the output in Iceberg for retraining and analytics.
 
 ### **Schedule**
 | Frequency | Time (UTC) | Airflow Expression | Description |
 |------------|-------------|--------------------|--------------|
-| Daily | 03:00 | `0 3 * * *` | Runs once daily at 3 AM to capture previous day’s flight records. |
+| Daily | 03:00 | `0 3 * * *` | Runs once daily at 3 AM (UTC) to capture previous day’s flight records. |
 
 ### **Workflow**
-1. **Data Ingestion** – Requests flight data for `T-1` via AviationStack API.  
-2. **Bronze Layer** – Saves raw JSON files.  
-3. **Silver Layer** – Converts JSON to Parquet, performs schema standardization.  
-4. **Gold Layer** – Stores processed data into Apache Iceberg tables.  
-5. **Logging** – Each step tracked within Airflow for transparency and error recovery.
+
+1. **Bronze Layer** – Streams AviationStack flight data into **daily_flights** and reads messages while converting them to raw JSON.  
+2. **Silver Layer** – Converts JSON to Parquet, performs schema standardization.  
+3. **Gold Layer** – Stores processed data into Apache Iceberg tables.  
+4. **Logging** – Each step tracked within Airflow for transparency and error recovery.
 
 ### **Output**
-- `data/bronze/daily/` → Raw data  
+- `data/bronze/daily/` → Kafka streaming and data processing
 - `data/silver/daily/` → Cleaned parquet  
 - `data/gold/iceberg/` → Final storage for analytics and ML training  
 
@@ -201,8 +226,8 @@ This DAG ensures the system continuously outputs actionable insights for upcomin
 | Daily | 10:00 | `0 10 * * *` | Runs once daily at 10 AM to forecast flight delays 8 days ahead. |
 
 ### **Workflow**
-1. **Data Ingestion** – Fetches upcoming flight data via AviationStack API.  
-2. **ETL & Encoding** – Converts to Parquet and prepares model-ready features.  
+1. **Kafka Producer** – Publishes T+8 flight data to future_flights topic.
+2. **Kafka Consumer** – Writes records to Bronze parquet.  
 3. **Model Prediction** – Uses latest trained XGBoost model for delay forecasting.  
 4. **Output Generation** – Saves both Parquet and Excel outputs for reporting.  
 5. **(Optional)** Email Dispatch – Sends delay reports to subscribed users.
@@ -242,7 +267,7 @@ This ensures continuous improvement of prediction accuracy as new data becomes a
 The following diagram illustrates the dependency order between DAGs:
 
 
-```text
+```
           ┌────────────────────────────┐
           │   avstack_daily_data_dag   │   (Runs daily at 3 AM UTC)
           └────────────┬───────────────┘
@@ -256,7 +281,7 @@ The following diagram illustrates the dependency order between DAGs:
           ┌──────────────────────────────────────────────┐
           │ avstack_future_flight_delay_prediction       │   (Runs daily at 10 AM UTC)
           └──────────────────────────────────────────────┘
-
+```
 
 **Logic:**  
 1. The **daily DAG** ensures historical data is fresh and ready for retraining.  
@@ -270,11 +295,14 @@ The following diagram illustrates the dependency order between DAGs:
 - All DAGs are configured with:
   - **`catchup=False`** to avoid retroactive backfills  
   - **Logging and XComs** for consistent inter-task data passing  
+  - **Kafka offset tracking** for reliable message consumption
+  - **Retries** for transient API or network errors
 
 - The pipelines gracefully handle:
   - Temporary API outages  
   - Slow or malformed responses  
   - Partial data writes  
+  - Kafka retries
 
 ---
 
