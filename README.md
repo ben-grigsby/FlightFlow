@@ -28,9 +28,8 @@ It combines stream-style ingestion, batch ETL, Airflow orchestration, and machin
 4. [ETL Pipeline (Bronze → Silver → Gold)](#etl-pipeline-bronze--silver--gold)  
 5. [Setup](#setup)  
 6. [DAG Scheduling Summary](#dag-scheduling-summary)  
-7. [Results](#results)  
-8. [Future Enhancements](#future-enhancements)  
-9. [Author](#author)
+7. [Future Enhancements](#future-enhancements)  
+8. [Author](#author)
 
 ---
 
