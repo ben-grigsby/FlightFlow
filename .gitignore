@@ -1,19 +1,77 @@
-# Environment
+# ---------------------------
+# Environment & Build
+# ---------------------------
 .env
+*.env
 venv/
 __pycache__/
+*.egg-info/
+.vscode/
+spark-warehouse/
 
-# Data + Logs
+# ---------------------------
+# Data & Logs & Docs
+# ---------------------------
 data/
 logs/
+docs/
+predictions_excel/
+*.log
+*.txt
 
-# Python
+# ---------------------------
+# Python Artifacts
+# ---------------------------
 *.pyc
 *.pyo
 *.pyd
 
-# Tests
+# ---------------------------
+# Tests & Temporary Scripts
+# ---------------------------
+tests/
 etl/sql_test.py
 
-# Config (optional)
+# ---------------------------
+# Config / Optional
+# ---------------------------
 config.py
+
+# ---------------------------
+# Legacy or Deprecated Code
+# ---------------------------
+# Old Airflow or API versions
+dags/aviationstack/
+dags/opensky/
+dags/opensky*.py
+
+# Old ETL scripts
+etl/bronze/
+etl/gold/
+etl/iceberg/inspect_iceberg_table.py
+etl/iceberg/temp_sep_update.py
+etl/avstack/
+etl/silver/silver_load.py
+etl/silver/silver_sql_queries.py
+etl/silver/inspect_data_structure.py
+etl/silver/sql_utilities.py
+
+# Other legacy components
+flightweather_dbt/
+infra/
+jars/
+models/
+scripts/avstack/clean_up.py
+scripts/modeling/email_predictions.py
+scripts/openmeteo/
+scripts/opensky/
+
+# ---------------------------
+# Documentation & Drafts
+# ---------------------------
+docs/
+draft_*.md
+API_schema.ipynb
+draft_README.md
+pagination_log.txt
+flight_db.session.sql
