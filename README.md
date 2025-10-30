@@ -70,6 +70,10 @@ HermesFlow/
 │   ├── avstack_daily_data_dag.py    # Historical flight data pipeline
 │   ├── avstack_future_flight_delay_prediction_dag.py  # Future prediction pipeline
 │
+├── dashboard/                       # Dashobard definitions
+│   ├── load_data.py                 # Loads in data from iceberg warehouse
+│   ├── main.py                      # Full code and structure for the dashboard
+│
 ├── scripts/                         # Python scripts for ingestion, ML, and utils
 │   ├── avstack/
 │   │   ├── avstack_kafka_producer.py
