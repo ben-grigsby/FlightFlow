@@ -331,7 +331,7 @@ The following diagram illustrates the dependency order between DAGs:
 ## Project Reflection
 
 A deeper analysis of design decisions, trade-offs, and lessons learned can be found in the  
-📘 [DEEP_REFLECTION.md](./PROJECT_REFLECTION.md) document.
+📘 [PROJECT_REFLECTION.md](./PROJECT_REFLECTION.md) document.
 
 ---
 
