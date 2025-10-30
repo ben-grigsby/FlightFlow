@@ -319,6 +319,13 @@ The following diagram illustrates the dependency order between DAGs:
 
 ---
 
+## Further Enhancements
+
+1. Adding in a pipeline that extracts weather data to become an additional model variable and further improve delay prediction accuracy 
+2. Update the delay prediction output code to email analysts/schedule planners the prediction status of flights to aid their efforts in mitigating costs caused by delays.
+
+--
+
 ## Author
 
 **Ben Grigsby**  
