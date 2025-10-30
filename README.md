@@ -29,7 +29,8 @@ It combines stream-style ingestion, batch ETL, Airflow orchestration, and machin
 5. [Setup](#setup)  
 6. [DAG Scheduling Summary](#dag-scheduling-summary)  
 7. [Future Enhancements](#future-enhancements)  
-8. [Author](#author)
+8. [Project Reflection](#project-reflection)
+9. [Author](#author)
 
 ---
 
@@ -324,6 +325,13 @@ The following diagram illustrates the dependency order between DAGs:
 
 1. Adding in a pipeline that extracts weather data to become an additional model variable and further improve delay prediction accuracy 
 2. Update the delay prediction output code to email analysts/schedule planners the prediction status of flights to aid their efforts in mitigating costs caused by delays.
+
+---
+
+## Project Reflection
+
+A deeper analysis of design decisions, trade-offs, and lessons learned can be found in the  
+📘 [DEEP_REFLECTION.md](./DEEP_REFLECTION.md) document.
 
 ---
 
