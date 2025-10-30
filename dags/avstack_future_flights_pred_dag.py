@@ -1,6 +1,8 @@
 # dags/future_flights_pred_dag.py
 
 from airflow import DAG
+from airflow.operators.email import EmailOperator
+from airflow.models import Variable
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
 from datetime import datetime 
@@ -13,6 +15,8 @@ sys.path.append("/opt/airflow/")
 
 from avstack.avstack_kafka_producer import run_kafka_producer_future
 from avstack.avstack_kafka_consumer import run_future_kafka_consumer
+from modeling.predict_future import predict_delay_function
+from modeling.email_predictions import send_flight_predictions_email
 
 with DAG(
     'avstack_future_flight_delay_prediction',
@@ -42,9 +46,14 @@ with DAG(
         bash_command="python3 /opt/airflow/etl/future_data/future_data_encoding.py"
     )
 
-    predict_delay = BashOperator(
-        task_id='predicting_future_delays',
-        bash_command="python3 /opt/airflow/scripts/modeling/predict_future.py"
+    predict_delay = PythonOperator(
+        task_id='predict_and_return_excel_path',
+        python_callable=predict_delay_function
     )
 
-    kafka_producer >> kafka_consumer >> parquet_conversion >> data_encoding >> predict_delay
+    # send_email = PythonOperator(
+    #     task_id='send_prediction_email',
+    #     python_callable=send_flight_predictions_email
+    # )
+
+    kafka_producer >> kafka_consumer >> parquet_conversion >> data_encoding >> predict_delay # >> send_email

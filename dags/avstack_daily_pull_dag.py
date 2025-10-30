@@ -18,7 +18,7 @@ from silver.silver_parquet_historic import process_json_files
 with DAG(
     'avstack_daily_data',
     schedule_interval='0 2 * * * ',
-    start_date=datetime.utcnow() + timedelta(days=1),
+    start_date=datetime(2025, 10, 28),
     catchup=False,
     tags=['avstack_daily']
 ) as dag:

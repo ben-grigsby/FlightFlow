@@ -6,6 +6,7 @@ sqlalchemy
 tqdm
 pathlib
 scikit-learn
+openpyxl
 
 # Kafka and streaming
 kafka-python
