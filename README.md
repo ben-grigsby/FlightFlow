@@ -278,12 +278,12 @@ The following diagram illustrates the dependency order between DAGs:
                        │
                        ▼
           ┌────────────────────────────┐
-          │   train_xgboost_model      │   (Runs weekly on Sunday at 4 AM UTC)
+          │   train_xgboost_model      │   (Runs weekly on Sunday at 5 AM UTC)
           └────────────┬───────────────┘
                        │
                        ▼
           ┌──────────────────────────────────────────────┐
-          │ avstack_future_flight_delay_prediction       │   (Runs daily at 10 AM UTC)
+          │ avstack_future_flight_delay_prediction       │   (Runs daily at 2 AM UTC)
           └──────────────────────────────────────────────┘
 ```
 
