@@ -1,2 +1,0 @@
-ALTER TABLE avstack.silver_flight_info
-DROP CONSTRAINT IF EXISTS silver_flight_info_pkey;
