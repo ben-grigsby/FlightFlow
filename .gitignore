@@ -50,11 +50,11 @@ etl/bronze/
 etl/gold/
 etl/iceberg/inspect_iceberg_table.py
 etl/iceberg/temp_sep_update.py
-etl/avstack/
+etl/silver/avstack/
 etl/silver/silver_load.py
 etl/silver/silver_sql_queries.py
-etl/silver/inspect_data_structure.py
-etl/silver/sql_utilities.py
+etl/inspect_data_structure.py
+etl/sql_utilities.py
 
 # Other legacy components
 flightweather_dbt/
