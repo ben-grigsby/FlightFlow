@@ -131,11 +131,12 @@ HermesFlow/
 
 ### Quickstart
 
-```bash
+```
 git clone https://github.com/ben-grigsby/HermesFlow.git
 cd HermesFlow
 cp .env.example .env  # Add your API key
 docker-compose up --build
+```
 
 
 Then visit:
