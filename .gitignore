@@ -69,7 +69,6 @@ scripts/opensky/
 # ---------------------------
 # Documentation & Drafts
 # ---------------------------
-docs/
 draft_*.md
 API_schema.ipynb
 draft_README.md

@@ -32,7 +32,8 @@ for file in os.listdir(KAFKA_LOGS_DIR):
     if not file.endswith(".json"):
         continue
 
-    with open(os.path.join(KAFKA_LOGS_DIR, file)) as f:
+    file_path = os.path.join(KAFKA_LOGS_DIR, file)
+    with open(file_path) as f:
         flights = json.load(f)
 
         for flight in flights:
@@ -76,4 +77,15 @@ print(f"Total parsed flights: {df.count()}")
 df.write.mode("overwrite").parquet(OUTPUT_PATH)
 print(f"Saved future flight data to {OUTPUT_PATH}")
 
+# ---------------------- Cleanup: Delete Raw JSON Files ----------------------
+try:
+    json_files = [f for f in os.listdir(KAFKA_LOGS_DIR) if f.endswith(".json")]
+    for json_file in json_files:
+        os.remove(os.path.join(KAFKA_LOGS_DIR, json_file))
+        print(f"Deleted: {json_file}")
+    print("All raw JSON files deleted after successful conversion.")
+except Exception as e:
+    print(f"Warning: Could not delete JSON files due to: {e}")
+
+# ---------------------- Stop Spark Session ----------------------
 spark.stop()

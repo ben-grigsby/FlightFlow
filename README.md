@@ -153,6 +153,23 @@ HermesFlow/
 
 ---
 
+## Data Availability Notice
+
+Due to data volume and licensing restrictions, the **historical and real-time flight datasets** used in this project are **not included** in this repository.
+
+As a result, components dependent on these datasets — particularly the **Future Flight Delay Prediction** DAG and its associated modeling scripts — will **not run out-of-the-box**.
+
+All other parts of the system, including:
+- **Kafka ingestion and streaming**
+- **ETL pipelines (Bronze → Silver → Gold)**
+- **Airflow orchestration**
+- **Apache Iceberg storage**
+- **Dashboard components**
+
+remain fully functional and illustrate the end-to-end **architecture, workflow design, and engineering logic** behind *HermesFlow*.
+
+This design choice prioritizes reproducibility and architecture demonstration over raw data sharing.
+
 ## Setup
 
 ### Prerequisites

@@ -5,10 +5,10 @@ from airflow.operators.bash import BashOperator
 from datetime import datetime
 
 with DAG(
-    'weekly_model_retrain',
+    'weekly_model_retrain_v2',
     schedule_interval='0 5 * * 0',
-    start_date=datetime(2025, 10, 7),
-    catchup=False,
+    start_date=datetime(2025, 11, 2),
+    catchup=True,
     tags=['model_retrain']
 ) as dag:
     
